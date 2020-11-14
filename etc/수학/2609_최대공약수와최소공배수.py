@@ -11,9 +11,13 @@ def lcm(a,b):
     i = max(a,b) +1
     while i%a or i%b:
         i+=1
-    print(i%a, i%b)
     return i
 
         
 print(gcd(A,B))
 print(lcm(A,B))
+
+'''
+둘 다 나눠 떨어지려면 i%a or i%b를 해줘야 
+0 or 0일 경우 while문이 break된다.
+'''
