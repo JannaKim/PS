@@ -6,6 +6,7 @@ L += ['','from random import*','random()# 0.0~1.0', 'randint(a,b)', 'shuffle(dat
 L += ['','from math import *', 'sqrt(n)']
 L += ['','from queue import PriorityQueue as pq', 'Q = pq()', 'Q.put(4)', 'Q.get()']
 L += ['', 'from functools import cmp_to_key as cmp', 'L.sort(key=cmp(lambda a, b:)) ']
+L += ['', 'from operator import itemgetter', 'L.sort(key= itemgetter(1,0)) ']
 L += ['', 'L= [int(input()) for i in [0]*int(input())]']
 L += ['', 'import queue as Q','q = Q.PriorityQueue()']
 L += ['', 'from heapq import heappush, heappop', 'heappush(q, el)', 'heappop(q)']
