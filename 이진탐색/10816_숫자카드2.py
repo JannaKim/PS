@@ -2,35 +2,59 @@ N = int(input())
 L  = [int(i) for i in input().split()]
 M = int(input())
 *F, = map(int, input().split())
-''' 이거 다시하기
-def QS(X, first,last):
-    if first>=last:
+'''
+위의 정렬 방식은 간단하면서도 재귀함수를 사용하는 방식의 문제풀이 방법이다, 하지만 입력이 커지면 커질수록 피벗값보다 작은 리스트, 같은 리스트, 큰 리스트들을 만들고 그 리스트들 안에서 또 작고 큰 리스트를 생성해야 하기 때문에 메모리의 비효율 성을 낳게 됩니다. 그러므로 메모리를 적게 사용하는 inplace 형식의 sort방법을 알아봅시다.
+'''
+def QS(X, a,b):
+    if a>=b:
         return
-    #print(L)
-    #print(first,last)
-    p = X[first]
-    i = first+1
 
-    j = last
+    p = X[a]
+    i = a+1
+    j = b
     while i<=j:
-        while X[i]<p and i<=last:
+        while i<=b and X[i]<=p:
             i+=1
-        while X[j]>=p and j>first:
+        while X[j]>p:
             j-=1
-        #print(f'i {i} j {j}')
         if i<j:
             X[i], X[j] = X[j], X[i]
-            #print('swap',L)
-    X[j], X[first] = X[first], X[j]
-    #print('pivot',L)
-    # j위치에 p 안착
+            i+=1
+            j-=1
+
+    X[j], X[a] = X[a], X[j]
+
     
-    QS(X,first,j-1)
-    QS(X,j+1,last)
+    QS(X,a,j-1)
+    QS(X,i,b)
+'''
+
+def QS(A, first, last):
+    if first>=last:
+        return
+
+    p = L[(first+last)//2]
+    i = first
+    j = last
+
+    while i<=j:
+        while L[i]<p:
+            i+=1
+        while L[j]>p:
+            j-=1
+        if i<=j:
+            L[i], L[j] = L[j], L[i]
+            i+=1
+            j-=1
+    QS(L,first,j)
+    QS(L,i,last)
+    
+
+
+'''
 
 QS(L,0,N-1)
-'''
-L.sort()
+
 
 def lower_bound(L,el): # el보다 작은 값 중 가장 큰값 인덱스 +1
     first = 0

@@ -10,3 +10,7 @@ if idx ==1 or idx == 5 or idx == 6 or idx == 8:
     print('SUBMARINE')
 else:
     print('NOISE')
+
+'''
+100000000001101
+'''
