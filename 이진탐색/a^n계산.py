@@ -10,5 +10,5 @@ def power(a, n):# a^n
             return x*x*a
         else:
             return x*x
-
+ 
 print(power(3,3))

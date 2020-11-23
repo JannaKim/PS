@@ -24,7 +24,7 @@ def merge(L,first,last):
 
 def MS(L,first,last):
     if first>=last:
-        return first
+        return 
     m = (first+last)//2
     MS(L,first,m) # 작은애들부터 순서정하고 큰거 계산하도록 계속재귀
     MS(L,m+1,last) # 잘게 쪼개서
