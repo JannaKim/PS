@@ -13,7 +13,7 @@ for i in range(n):
         pf.append((0, i))
 pf.sort(key = cmp(lambda a, b: w[b[1]]-w[a[1]] if b[0]==a[0] else a[0]-b[0]), reverse=True) # 가성비 같으면 무게 작은것부터 넣는다.
 
-print(pf)
+#print(pf)
 MP = -1 # 노드 i까지 봤을 때 얻은 이익중 최댓값
 
 

@@ -33,5 +33,6 @@ print(max(total))
 
 
 '''
+In this problem,
 The necessary info to define accum[v] is always perfectly defined before the attempt to define accum[v].
 '''

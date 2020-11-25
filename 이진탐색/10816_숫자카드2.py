@@ -21,7 +21,6 @@ def QS(X, a,b):
             X[i], X[j] = X[j], X[i]
             i+=1
             j-=1
-
     X[j], X[a] = X[a], X[j]
 
     
