@@ -1,5 +1,5 @@
 from sys import *
-setrecursionlimit(500000)
+setrecursionlimit(10000)
 input = lambda: stdin.readline().rstrip()
 N = int(input())
 L = [int(i) for i in input().split()]
@@ -44,7 +44,7 @@ def left(L,k): # 첫 k에 가는 게 목표였는데 k가 없다면 더 작은 �
             i=m+1
         else:
             j=m
-    if L[i]<k:
+    if L[i]<k: #?
         return i+1
     return i
 
