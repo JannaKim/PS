@@ -44,6 +44,8 @@ print(max(accum))
 '''
 
 
+
+
 '''
 
 The goal is to collect all infos that affects current vertax(v).
