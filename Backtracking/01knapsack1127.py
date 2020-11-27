@@ -12,10 +12,9 @@ print(cp)
 #가성비가 같다면 가벼우운순으로
 X=[-1]*N
 mx=-1
-
+print(cp)
 def cost_performance(i,size):
     #print('cp')
-    #print(i,size)
     s=size
     cnt=i
     ans=0
@@ -37,6 +36,7 @@ def cost_performance(i,size):
 
 
 def knapsack(i,size):
+    print(i,size)
     global mx
     global X
     if i>=N or size<=0:
@@ -47,16 +47,21 @@ def knapsack(i,size):
     if wv[i][0]<=size:
         #print(f'{wv[i][0]}<={size}')
         B = cost_performance(i+1,size-wv[i][0])
+        print(B,1)
+        print(accum,wv[i][1], B, mx,'11')
         if accum + wv[i][1] + B >mx: 
             X[i]=1
             mx = max(accum+wv[i][1],mx)
+            print(mx)
             #print(X[:i+1], i+1, size-wv[i][0])
             knapsack(i+1,size-wv[i][0])
 
     B = cost_performance(i+1,size)
+    print(B,2)
     if accum+B>mx:
         X[i]=0
         mx = max(accum,mx)
+        print(mx)
         #print(X[:i+1], i, size)
         knapsack(i+1,size)
 
@@ -69,4 +74,10 @@ print(mx)
 4 8
 3 6
 5 12
+
+4 16
+2 40
+5 30
+10 50
+5 10
 '''
