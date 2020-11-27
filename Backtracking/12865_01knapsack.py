@@ -50,12 +50,13 @@ def backtrack(i, size):
          # x: 점검하는 한계 함수(bounding function)
         return
     else:
-
+        print(x)
         p = sum([v[j] if x[j]==1 else 0 for j in range(i) ]) # 골라진 애들 가치합
-
+        print(i,size,p)
 
         # x[info] =1 을 따라가야 하는지 결정
         if w[i] <= size:
+            print(v[i],size)
             B = frac_knapsack(i+1, size-w[i])
 
             if p+ v[i] + B> MP: # 그리디 상으로 가능성 o
@@ -63,6 +64,7 @@ def backtrack(i, size):
                 MP= max(MP,p+v[i])
                 x[i]=1
                 #print(x[:i+1], i, size)
+                print('o')
                 backtrack(i+1, size-w[i])
         # x[info] =0 을 따라가야 하는지 결정
 
@@ -72,6 +74,7 @@ def backtrack(i, size):
             #print(i,'안넣음',p + B, '>', MP)
             x[i]= 0
             #print(x[:i+1], i, size)
+            print('x')
             backtrack(i+1, size)
         
 
