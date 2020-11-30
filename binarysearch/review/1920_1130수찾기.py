@@ -1,6 +1,8 @@
 from math import log
 N = int(input())
 A = [int(i) for i in input().split()]
+pos = [i for i in A if i>=0]
+neg = [-i for i in A if i<0]
 M = int(input())
 B = [int(i) for i in input().split()]
 
@@ -20,7 +22,7 @@ def find(first, last,el):
         return 1
     else:
         return 0
-'''
+
 def f(el,d):
     return (el//10**d)%10
 
@@ -41,11 +43,15 @@ def radix_sort(L,d):
 def radix(L):
     digit = int(log(max(L),10))
     for d in range(digit+1):
-        ans=radix_sort(L,d)
-    return ans
-A = radix(A)
-'''
-A.sort()
+        L=radix_sort(L,d)
+    return L
+
+if neg:
+    neg = reversed(radix(neg))
+if pos:
+    pos = radix(pos)
+A = [-i for i in neg] if neg else []
+A += pos if pos else []
 [print(find(0,N-1,el)) for el in B]
 
 '''
@@ -53,4 +59,9 @@ A.sort()
 4 1 5 2 3
 5
 1 3 7 9 5
+
+5
+5 -4 5 -8 3
+5
+1 2 3 4 5
 '''
