@@ -1,3 +1,4 @@
+#해결 i날 전까지 끝낸 i 가져가서
 from sys import *; input= lambda: stdin.readline().rstrip()
 
 N = int(input())
@@ -10,10 +11,12 @@ for _ in range(N):
 mx=0
 def dfs(i,accum):
     global mx
-    if i>N or i-1+T[i]>N:
+    if i>N+1:
         return
-        mx=max(mx,accum)
-    dfs(i-1+T[i], accum+P[i])
+    mx=max(mx,accum)
+    if i==N+1:
+        return
+    dfs(i+T[i], accum+P[i])
     dfs(i+1,accum)
 
 dfs(1,0)

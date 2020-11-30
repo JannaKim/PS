@@ -7,7 +7,7 @@ data.insert(0,0)
 #dp[j][0]: 최대 동전개수
 for i in range(1,5):
     print(f'i {i}')
-    for j in range(X,-1,-1):
+    for j in range(X,-1,-1): # 왜 거꾸로하지?
         print(f'j {j}')
         if dp[j][0] or j==0: # j원을 만드는 동전개수가 차 있을때, 0원일때
             for k in range(1,data[i]+1): #현재 동전을 하나~max까지 써본다

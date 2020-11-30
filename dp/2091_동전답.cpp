@@ -7,7 +7,7 @@ int main()
     for (i = 1; i <= 4; i++)
     {
         scanf("%d", &data[i]);
-    }rd
+    }
     for (i = 1; i <= 4; i++)
     {
         for (j = X; j >= 0; j--)
