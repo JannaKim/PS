@@ -1,8 +1,10 @@
-#L = [1 ,5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9]
-
+from sys import *; setrecursionlimit(1000001)
+N = int(input())
+L = [int(input()) for _ in range(N)]
+R=[0]*3 
 def median(A):
     if len(A)==5:
-        R=[0]*3 # round
+        global R
         R[0]= (0 if A[0]>A[1] else 1)
         R[1]= (2 if A[2]>A[3] else 3)
         R[2] = (R[0] if A[R[0]]>A[R[1]] else R[1]) # A[0:5] 중 winner의 index
@@ -41,4 +43,28 @@ def median(A):
     else:
         return A[0]
 
-print(median([1,5,3,4]))
+
+
+def QS(L, first, last):
+    if first>=last:
+        return
+    medians=[]
+    for i in range(first,last+1,5):
+        medians.append(median(L[i: min(i+5,last+1)]))
+    m = median(medians)
+    i=first
+    j=last
+    while i<=j:
+        while L[i]<m:
+            i+=1
+        while L[j]>m:
+            j-=1
+        if i<=j:
+            L[i], L[j] = L[j], L[i]
+            i+=1
+            j-=1
+    QS(L, first, i-1)
+    QS(L, i, last)
+
+QS(L,0,N-1)
+[print(i) for i in L]
