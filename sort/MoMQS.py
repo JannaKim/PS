@@ -44,14 +44,20 @@ def median(A):
         return A[0]
 
 
+def MoM(L):
+	if len(L) == 1: # no more recursion
+		return L[0]
+	medians=[]
+	for i in range(0,len(L),5):
+		medians.append(median(L[i: min(i+5,len(L))]))
 
+	mom = MoM(medians)
+	return mom
+    
 def QS(L, first, last):
     if first>=last:
         return
-    medians=[]
-    for i in range(first,last+1,5):
-        medians.append(median(L[i: min(i+5,last+1)]))
-    m = median(medians)
+    m = MoM(L[first:last+1])
     i=first
     j=last
     while i<=j:
