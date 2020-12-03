@@ -41,7 +41,7 @@ int main()
     <<fixed<<setprecision(4)<<3.14159265<<'\n' //3.1416
     <<setprecision(prec)<<3.141592653589 <<'\n';//3.141593
 
-
+    return 1;
     /*
     string s;
     getline(cin,s);
