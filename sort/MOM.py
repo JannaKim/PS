@@ -61,7 +61,7 @@ def MoM(L, k): # L의 값 중에서 k번째로 작은 수 리턴
 		elif v>mom: B.append(v)
 		else: M.append(v)
 
-	if len(A)>=k: return MoM(A,k)
+	if len(A)>=k: return MoM(A,k)2
 	elif len(A)+len(M)<k: return MoM(B,k-len(A)-len(M))
 	else: return mom
 
