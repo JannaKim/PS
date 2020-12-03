@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <vector>
 #include <iomanip>
+#include <iostream>
 using namespace std;
 int main()
 {
@@ -21,6 +22,10 @@ int main()
             score.push_back(x);
             sum+=x;
         }
+
+        typedef vector<double>::size_type vsz;
+        vsz size = score.size();
+        cout<<size<<endl;
         int av=1.f*sum/N;
         int cnt=0;
         for(int i=0;i<N;i++)
@@ -36,5 +41,27 @@ int main()
         
     }
     
+    //cout<<ans.begin()<<' '<<ans.end()<<endl;
+    //printf("%d %d",ans.begin(), ans.end());
+    printf("%lf,%lf",ans.front(),ans.back());
+
+    cout<<'\n';
+    for(int i=0;i<ans.size();i++)
+    {
+        cout<<ans[i]<<" ";
+    }
+    
+    sort(ans.begin(),ans.end());
+
+    for(vector<int>::iterator i= ans.begin(); i!=ans.end();i++)
+    {
+        cout<<*i<<" ";
+    }
+
+    for(auto ir= ans.rbegin(); ir!=ans.rend(); ++ir) // 뒤에서부터 출력
+    { // ans.rend()포함 안하고 돌리나?
+        cout<<*ir<<" ";
+    }
+
     return 0;
 }
