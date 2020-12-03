@@ -1,6 +1,10 @@
 {
     "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3",
     "files.associations": {
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "ios": "cpp",
+        "vector": "cpp",
+        "iosfwd": "cpp",
+        "iterator": "cpp"
     }
 }

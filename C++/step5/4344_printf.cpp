@@ -2,23 +2,70 @@
 #include <iomanip>
 #include <vector>
 using namespace std;
+#include <stdio.h>
 
 
 int main(){
-    ios_base::sync_with_stdio(false);
+/*
+    int N;
+    cin>>N;
+    for(int i=0;i<N;i++)
+    {
+        int n;
+        cin>>n;
+        cout<<"*"<<n<<'\n';
+
+    }
+*/
+
+/*
+30
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+*/
+
+    //ios_base::sync_with_stdio(false);
+    
     int C;
-    cin>>C;
-    cout<<fixed<<setprecision(3);
+    scanf("%d",&C);
     for(int t=0;t<C;t++)
     {
         int N;
-        cin>>N;
+        scanf("%d",&N);
         vector<double> score;
         double x;
         double sum=0;
         for(int i=0;i<N;i++)
         {
-            cin>>x;
+            scanf("%d",&x);
             score.push_back(x);
             sum+=x;
         }
@@ -30,10 +77,11 @@ int main(){
         }
         //cout<<av<<" "<<cnt<<" "<<N<<endl;
         double ans=cnt/N; // int / double = 0?
-        cout<<ans*100<<"%"<<'\n';
-
+        // 애초에 int로 나누는데 앞에 1.f붙여주면 될듯.
+        printf("%.3lf%\n",ans*100);
 
     }
+    
     return 0;
 }
 /*
