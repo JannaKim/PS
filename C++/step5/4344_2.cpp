@@ -52,13 +52,14 @@ int main()
     }
     
     sort(ans.begin(),ans.end());
-
-    for(vector<int>::iterator i= ans.begin(); i!=ans.end();i++)
+    cout<<'\n';
+    for(vector<double>::iterator i= ans.begin(); i!=ans.end();i++) 
     {
         cout<<*i<<" ";
     }
-
-    for(auto ir= ans.rbegin(); ir!=ans.rend(); ++ir) // 뒤에서부터 출력
+    cout<<'\n';
+    vector<double>::reverse_iterator ir(ans.rbegin());
+    for(; ir!=ans.rend(); ++ir) // 뒤에서부터 출력
     { // ans.rend()포함 안하고 돌리나?
         cout<<*ir<<" ";
     }
