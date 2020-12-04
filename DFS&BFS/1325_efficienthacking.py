@@ -1,10 +1,10 @@
-import sys; setrecursionlimit(1000000)
-raw_input = lambda: sys.stdin.readline()
-N, M = map(int, raw_input().split())
+import sys; sys.setrecursionlimit(1000000)
+input = lambda: sys.stdin.readline()
+N, M = map(int, input().split())
 edge = [[] for _ in range(N+1)]
 indegree = [0]*(N+1)
 for _ in range(M):
-    a, b = map(int, raw_input().split())
+    a, b = map(int, input().split())
     edge[b].append(a)
     indegree[a]+=1
 
