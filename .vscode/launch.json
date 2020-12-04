@@ -4,11 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
-        
-
-
-
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Chapter2Finished",
+            "request": "launch",
+            "mainClass": "Java.Chapter2Finished",
+            "projectName": "PS_819dcdfd"
+        },
         {
             "name": "Attach to Edge",
             "port": 9222,
@@ -80,7 +82,9 @@
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
                 "pipeProgram": "${env:windir}\\system32\\bash.exe",
-                "pipeArgs": ["-c"],
+                "pipeArgs": [
+                    "-c"
+                ],
                 "pipeCwd": ""
             },
             "setupCommands": [
@@ -100,7 +104,9 @@
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
                 "pipeProgram": "${env:windir}\\system32\\bash.exe",
-                "pipeArgs": ["-c"],
+                "pipeArgs": [
+                    "-c"
+                ],
                 "pipeCwd": ""
             },
             "setupCommands": [
@@ -124,7 +130,9 @@
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
                 "pipeProgram": "${env:windir}\\system32\\bash.exe",
-                "pipeArgs": ["-c"],
+                "pipeArgs": [
+                    "-c"
+                ],
                 "pipeCwd": ""
             },
             "setupCommands": [
@@ -135,7 +143,6 @@
                 }
             ]
         },
-
         {
             "name": "(Windows) 시작",
             "type": "cppvsdbg",
@@ -146,7 +153,6 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false
-        },
-
+        }
     ]
 }
