@@ -32,7 +32,7 @@ def radix_sort(L):
         L=radix(L,d)
     return L
 
-
+#L.sort()
 
 [print(i) for i in radix_sort(L)]
 # N이 최대 10,000,000인 경우 기본적으로 int형이 24byte(python)기에 240MB 이상이 필요하게 됩니다.

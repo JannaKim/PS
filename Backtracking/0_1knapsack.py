@@ -16,7 +16,7 @@ pf.sort(key = cmp(lambda a, b: w[b[1]]-w[a[1]] if b[0]==a[0] else a[0]-b[0]), re
 #print(pf)
 MP = -1 # 노드 i까지 봤을 때 얻은 이익중 최댓값
 
-
+# 
 def frac_knapsack(idx, size): # 가성비 이익 return
     #print('fk', idx, size)
     frac_sum = 0
