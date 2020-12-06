@@ -14,7 +14,7 @@ public class Chapter2Finished {
         bw.write(a+"\n");
         bw.write(checked+"\n");
 
-        char c = 65;
+        char c = 65; //writes
         char d = 'A';
         bw.write(c+"\n");
         bw.write(d+"\n");

@@ -14,6 +14,7 @@ public class Chap2Exercises
         regNo = Long.parseLong(s);
 
         bw.write(s+"\n",1,5); //offset위치부터 length크기만큼 씀
+        bw.write("\n");
 
    
         //System.out.println('1'+0); // '1': 49
