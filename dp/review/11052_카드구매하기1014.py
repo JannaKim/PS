@@ -14,3 +14,24 @@ print(dp[N])
 4
 1 5 6 7
 '''
+
+
+'''
+#include<cstdio>
+#include<cstring>
+
+long long N, K, R = 1;
+
+int main()
+{
+	scanf("%d %d", &N, &K);
+
+	for (int i = 0; i < K; R *= N - i, i++);
+
+	for (int i = 1; i <= K; R /= i, i++);
+
+	printf("%d", R);
+
+	return 0;
+}
+'''

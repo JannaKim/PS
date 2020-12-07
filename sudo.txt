@@ -1,0 +1,10 @@
+ls
+open .
+pwd
+sudo vim ~/.bash_profile
+i
+esc
+:wq
+. ~/.bash_profile
+
+cat ~/.bash_profile
