@@ -26,7 +26,7 @@ for coin in range(1,13):
     if info[coin][0]==result:
         sol+=1
         fls = str(coin)
-        sgn='-'
+        sgn='-'nm 
     if info[coin][1]==result:
         sol+=1
         fls = str(coin)
