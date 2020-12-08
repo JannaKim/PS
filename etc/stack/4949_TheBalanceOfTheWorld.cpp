@@ -8,17 +8,17 @@ int main()
     while(1)
     {
 
-        //char curLine[100+1];
-        //scanf("%[^\n]",curLine); // (scanf는 앞뒤 공백을 무시하므로 한줄 전체를 그대로 받는 데에는 적절치 못하다.)
-        /*
-        char *token = strtok(curLine,"\0");
-        */
-        string s;
-        getline(cin,s);
+        char curLine[100+1];
+        scanf("%[^\n]",curLine); // (scanf는 앞뒤 공백을 무시하므로 한줄 전체를 그대로 받는 데에는 적절치 못하다.)
+        
+        //char *token = strtok(curLine,'\0');
+        
+        //string s;
+        //getline(cin,s);
         //int lineLen=s.size();
 
-        const char *curLine = s.c_str();
-        if(curLine[0]=='.'&&curLine[1]=='\0') break;
+        //const char *curLine = s.c_str();
+        if(curLine[0]=='.') break;
 
         char bracket_sta[100+1];
         int top= -1;
