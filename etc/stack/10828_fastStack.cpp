@@ -20,7 +20,7 @@ int main()
         if(!strcmp(curCmd,"push"))
         {
             scanf("%d",myStack+ top++);
-            if(top>MAX_SIZE) --top;
+            if(top>MAX_SIZE) --top; //Invalid declaration
         }
 
         else if(!strcmp(curCmd,"pop"))
