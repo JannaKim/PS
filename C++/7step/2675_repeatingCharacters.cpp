@@ -32,9 +32,9 @@ int main()
         }
         */
        int cnt;
-       scanf("%d",&cnt);
+       scanf("%d ",&cnt);
        string str;
-       getline(cin,str,'\n');
+       getline(cin,str,'\n'); // 이 문자 추출시 중단. 스트림에서도 사라짐
 
         for(int j=0; j<str.length(); j++) //'\0' 전까지 도는 for문
         {
