@@ -7,12 +7,12 @@ using namespace std;
 int main()
 {
     int testcases;
-    scanf("%d",&testcases);
-    string s;
-    for(int i=0;i<testcases;i++)
+    scanf("%d\n",&testcases);
+    for(int i=0;i<testcases;++i)
     {
         //getchar();
         //scanf("%*c");
+        /*
         char Line[2+10+1];
         const char *word;
 
@@ -30,14 +30,19 @@ int main()
             getline(cin,s,'\n');
             word = s.c_str();
         }
-        
+        */
+       int cnt;
+       scanf("%d",&cnt);
+       string str;
+       getline(cin,str,'\n');
 
-        for(int i=0; word[i]; ++i) //'\0' 전까지 도는 for문
+        for(int j=0; j<str.length(); j++) //'\0' 전까지 도는 for문
         {
-            string cpythswordntimes(cnt,word[i]);
-            printf("%s",cpythswordntimes.c_str());
+            //string cpythswordntimes(cnt,str[i]);
+            //printf("%s",cpythswordntimes.c_str());
+            cout<<string(cnt,str[j]);
         }
-        if(i!=testcases-1)printf("\n");
+        printf("\n");
     }
 
 }
