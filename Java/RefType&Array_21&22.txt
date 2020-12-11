@@ -34,3 +34,52 @@ String[] strArray = new String[3];
 strArray[0]= "";
 
 System.arraycopy(origin, idx, obj, dest idx, len)
+
+
+
+class:
+
+필드: 클래스 안 다른 중괄호 외부에 선언하기
+
+기본 생성자: 생성자 선어 ㄴ생략할 경우 바이트 코드 자동 추가.
+
+매개변수, 필드 이름 동알하게 짓고, 값 넣을때 this.필드변수이름= 으로 넣기
+
+
+
+객체: 속성(field, data), 필드(method) 로 구성.
+자바가 객체지향 프로그래밍인 이유
+
+현실 세계의 객체를 소프트웨어의 객체로 표현할 수 있도록 잘 만들어져 있기 때문
+
+객체 지향 프로그래밍? 객체를 이용해 프로그램을 개발하는 방법
+
+
+생성자 오버로딩. 
+
+클래스 두 용도: 라이브러리, 실행 클래스(main() 메소드 제공 역할. 실행의 목적)
+
+
+this() 코드:
+
+하는 일이 중복될때.
+
+Car(String a){
+    String
+    String
+    int
+
+    위에 다 지우고
+
+    this(a,b,c) 로 바꾸기 된다. 안 지우면 안된다.? 생성자 첫줄에서만 허용.
+
+}
+
+Car(Stinga, String b){
+    this(a,b,250);
+
+}
+
+Car(String a, String b, int c){
+
+}

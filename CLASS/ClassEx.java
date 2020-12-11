@@ -14,18 +14,27 @@ public class ClassEx{
         BufferedWriter bw = new BufferedWriter(new 
         OutputStreamWriter(System.out));
 
-        JannaProfile hi = new JannaProfile();
+        Profile me = new Profile("Minjae Kim", 26, new int[] {159, 43});
 
 
-        bw.write(hi.H+"\n");
+        bw.write(me.wei+" " +me.age+" "+me.nation+ "\n");
         bw.flush();
         
     }
 }
 
 
-public class JannaProfile {
-    String name="Minjae Kim";
-    int H = 159;
-    int wei = 43;
+public class Profile {
+    String name;
+    int age;
+    int H;
+    int wei;
+    String nation= "Korean";
+
+    public Profile(String name, int age, int[] HW){
+    this.name= name; // 파이썬처럼 중복안되네 
+    this.age = age;
+    H = HW[0];
+    wei = HW[1];
+    }
 }
