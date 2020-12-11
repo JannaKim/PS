@@ -1,21 +1,55 @@
+def game_start():
+    print("[note] new game")
+
+def game_over(gg_player):
+    print("Player[{gg_player}]: gg")
+    print(f"[{gg_player}] went out.")
+
 class Unit:
     def __init__(self, name, hp, damage):
+        
         self.name= name
         self.hp= hp
         self.damage= damage
-        print(self.name, self.hp, self.damage) #??
+        # self.defaulthp 불가??
+        self.defaulthp=hp
+        print(f"{self.name}({self.hp}/{hp})[{self.damage}] is created.") 
 
-    #def Attack(self):
+    def attack(self, target):
+        print(f"{self.name}({self.hp}/{self.defaulthp})[{self.damage}] aims {target.name}({target.hp}/{target.defaulthp})[{target.damage}].") 
+        target.hp-=self.damage
+        if target.hp>0:
+            print(f"{target.name} is damaged.\n{target.name}({target.hp}/{target.defaulthp})[{target.damage}]") 
+        else:
+            print(f"{target.name} is destroyed.\n{target.name}({'0'}/{target.defaulthp})[{target.damage}]") 
+            return True
+        return False
+
 
 
 class NoDamageUnit(Unit):
     def __init__(self, name, hp):
-        self.name= name
-        self.hp= hp
-        print(self.name, self.hp)
+        Unit.__init__(self, name, hp, 0)
+        print(f"{self.name}({self.hp}/{Unit.defaulthp}[{self.damage}]) is created.") 
 
 
-one = Unit("Obj_1", 100, 1)
-two = Unit("Obj_2", 50, 3)
 
-#one.Attack()
+game_start()
+one = Unit("Medic", 40, 6)
+two = Unit("Firebat", 60, 16)
+
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+if one.attack(two): game_over(two.name)
+
+attack_units = []
+attack_units.append(one)
+
+
