@@ -1,0 +1,26 @@
+name: Alparta(temporarily name)
+planning purpose: to help user improve algorithm skills effectively.
+
+contents:
+    1. see how much time is taken for each subject: average, standard deviation and each problem respectively.
+    2. know which subject was neglected for a long time: shows the last recent date the user studied, each.
+    3. add diary for each subject: the goal is to collect weaknesses
+
+configurations:
+
+중첩 클래스로 밖은 Singleton, 안에 속 클래스는 private로 여기 안에서만 만들 수 있도록: 보안
+
+목차, 시간 복잡도 외우기?
+
+시간 입력
+
+실행하면 sign in, sign up 나누기. sign up 이면 새 객체 만들어줌-> 프로그램 실행할때마다 지워질텐데 ?
+
+
+
+
+
+
+
+
+
