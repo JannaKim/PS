@@ -1,4 +1,3 @@
-
 tc = int(input())
 for _ in range(tc):
     nRent, nRecruit = tuple(map(int, input().split()))

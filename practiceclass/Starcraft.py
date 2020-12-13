@@ -2,7 +2,7 @@ def game_start():
     print("[note] new game")
 
 def game_over(gg_player):
-    print("Player[{gg_player}]: gg")
+    print(f"Player[{gg_player}]: gg")
     print(f"[{gg_player}] went out.")
 
 class Unit:
@@ -35,19 +35,12 @@ class NoDamageUnit(Unit):
 
 
 game_start()
-one = Unit("Medic", 40, 6)
+one = Unit("Medic", 40, 7)
 two = Unit("Firebat", 60, 16)
 
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
-if one.attack(two): game_over(two.name)
+while not one.attack(two): continue
+game_over(two.name)
+
 
 attack_units = []
 attack_units.append(one)
