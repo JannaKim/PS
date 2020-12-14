@@ -19,4 +19,4 @@ public class DmbCelPhoneEx {
         myDmb.turnOffDmb();
     }
     
-}
+} //javac *.java 패치키컴파일

@@ -23,11 +23,12 @@ class setplayer:
         self.y= y
         self.score=0
 
-    def draw(self,x,y): # 다른객체 이용하는법? map바꿀떄마다 둘이 통일 시켜주면 될듯
-        # mp객체 하나만 만들어서 이용하기?
+    def draw(self,other_Obj,x,y): # 다른객체 이용하는법? map바꿀떄마다 둘이 통일 시켜주면 될듯
         prev_x=self.x
         prev_y=self.y
-        return((self.name,prev_x,prev_y,x,y))
+        # mp객체 하나만 만들어서 이용하기?
+        f(self, (self.name,prev_x,prev_y,x,y))
+
 
 
 
@@ -35,12 +36,14 @@ class setplayer:
 
 
 player1= setplayer('$',1,1)
-f(player1,player1.draw(1,1))
+#f(player1,player1.draw(1,1))
+player1.draw(1,1)
 [print(*el) for el in mp]
 print()
 
 player2= setplayer('%',8,2)
-f(player2,player2.draw(8,2))
+player1.draw(8,2)
+player1.draw(player2,1,1)
 [print(*el) for el in mp]
 print()
 

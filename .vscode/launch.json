@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - DmbCelPhoneEx",
+            "request": "launch",
+            "mainClass": "practiceclass.selfstudyingjava.sec01exam01.DmbCelPhoneEx",
+            "projectName": "PS_819dcdfd"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Chapter2Finished",
             "request": "launch",
             "mainClass": "Java.Chapter2Finished",

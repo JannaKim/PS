@@ -2,7 +2,7 @@ package practiceclass.selfstudyingjava.sec01exam01;
 
 public class DmbCellPhone extends CellPhone{ //Dmb기능 추가
     //field
-    int channel;
+    public int channel;
 
     //constructor
     //외부에서 모델 정보를 받을 수 있도록
@@ -17,7 +17,7 @@ public class DmbCellPhone extends CellPhone{ //Dmb기능 추가
     //method
     void turnOnDmb(){ System.out.println("channel"+channel+" is now on.");}
     void changeChannelDmb(int channel){ System.out.println("channel switched to"+channel+".");}
-    void turnOffDmb(){ System.out.println("Dmb off.");}
+    void turnOffDmb(){ System.out.println("Dmb off.");} 
 
 
 
