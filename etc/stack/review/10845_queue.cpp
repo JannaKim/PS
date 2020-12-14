@@ -57,8 +57,8 @@ int main()
 {
     int n;
     scanf("%d\n",&n);
-    Queue* myQueue = new Queue();
-    //Queue myQueue;
+    //Queue* myQueue = new Queue();
+    Queue myQueue;
 
     while(n--)
     {
@@ -70,29 +70,29 @@ int main()
         {
             int num;
             scanf("%d",&num);
-            myQueue->push(num);
+            myQueue.push(num);
         }
 
         else if(!strcmp(command,"pop"))
         {
-            printf("%d\n",myQueue->pop());
+            printf("%d\n",myQueue.pop());
         }
 
         else if(!strcmp(command,"size"))
         {
-            printf("%d\n",myQueue->size());
+            printf("%d\n",myQueue.size());
         }
         else if(!strcmp(command,"empty"))
         {
-            printf("%d\n",myQueue->empty());
+            printf("%d\n",myQueue.empty());
         }
         else if(!strcmp(command,"front"))
         {
-            printf("%d\n",myQueue->front());
+            printf("%d\n",myQueue.front());
         }
         else if(!strcmp(command,"back"))
         {
-            printf("%d\n",myQueue->back());
+            printf("%d\n",myQueue.back());
         }
     }
 }
