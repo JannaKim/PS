@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <cstring>
-// findk(char charX[]); Q) 이런식으로 알려줄 수 있지 않았나?
+// findk(char charX[]); Q) 근데 이런식으로 알려줄 수 있지 않았나?
 
 
 //시간복잡도 O(1)
@@ -11,15 +11,42 @@ int findk(char charX[])
     int sum=0;
     for(int i=0; charX[i]; i++)
     {
-        int nCases=1;
-        char copied[10];
-        strcpy(copied,charX);
+        int cnt=0;
 
-        if(charX[i]-'0'<k) if(i!=0) copied[i-1]-=1;
-        if(i==0&&charX[i]-'0'<k) continue;    
-        for(int j=0; copied[j]; j++)
-            if(i!=j) nCases*=((copied[j]-'0')+1);
-        sum+=nCases;
+        if(i==0&&(charX[i]-'0')<k) continue;   
+
+        if(i==0){
+            if(charX[0]-'0'==k){
+                for(int j=1; charX[j]; j++)
+                    cnt=10*cnt+(charX[j]-'0');
+                cnt+=1;
+            }
+            else{
+                cnt=1;
+                for(int j=1; charX[j]; j++)
+                    cnt*=10;
+            }
+        }
+        else{
+            int beforei=0;
+            int afteri=0;
+            int temp=1;
+            for(int j=0; charX[j]; j++){
+                if(j<i) beforei=10*beforei+(charX[j]-'0');
+                else if(i<j){
+                    afteri=10*afteri+(charX[j]-'0');
+                    temp*=10;
+                }
+            }
+            if((charX[i]-'0')==k){
+                cnt+=afteri;
+                cnt+=beforei*temp;
+            }
+            else if((charX[i]-'0')<k)
+                cnt+=beforei*temp;
+            else cnt+=(beforei+1)*temp;
+        }
+        sum+= cnt;
     }
     return sum;
 }
