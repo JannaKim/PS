@@ -20,6 +20,7 @@ class Queue{
 
         void push(int number)
         {
+            if (top-bottom>=10000) return;
             queue[top++]=number;
         }
 
@@ -69,7 +70,8 @@ class Queue{
 
 int main()
 {
-    Queue* myQueue = new Queue();
+    //Queue* myQueue = new Queue();
+    Queue myqueue();
     int n;
     scanf("%d\n",&n);
     while(n--)

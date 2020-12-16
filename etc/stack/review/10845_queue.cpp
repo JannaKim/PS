@@ -10,7 +10,7 @@ using namespace std;
 class Queue{
 private:
     int queue[10000+1];
-    memset(queue,0,sizeof(queue)); //?
+    //memset(queue,0,sizeof(queue)); //?
     int top=0;
     int bottom=0;
 
