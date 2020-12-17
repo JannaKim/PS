@@ -18,26 +18,31 @@ int main()
       scanf("%d %d %d %d %d %d",&x1,&y1,&r1,&x2,&y2,&r2);
 
       double dis = sqrt( pow(x1-x2,2) + pow(y1-y2,2));
-      if((int)dis != dis) {printf("0\n"); continue;}
+      //if((int)dis != dis) {printf("0\n"); continue;}
 
-      //고정: r1<r2
-      if(r2<r1){
+      //고정: r1<r2 이도록
+      if(r1>r2){
          int temp= r1;
          r1=r2;
          r2=temp;
       }
+/*
+원이 두 점에서 만나는 경우
+
+r2 - r1 < d < r1 + r2
+*/
 
       // 안
       if(dis<r2){
-         if(dis+r1==r2) printf("1\n");
-         else if(dis+r1>r2) printf("2\n");
-         else if(dis==0&&r1==r2) printf("-1\n");
+         if(dis==0&&r1==r2) printf("-1\n");
+         else if(r2-r1<dis&&dis<r1+r2) printf("2\n");
+         else if(dis+r1==r2) printf("1\n");
          else printf("0\n");
       }
 
       //밖
       else{
-         if(dis<r1+r2) printf("2\n");
+         if(r2-r1<dis&&dis<r1+r2) printf("2\n"); // 이부분 부족한듯
          else if(dis==r1+r2) printf("1\n");
          else printf("0\n");
       }
