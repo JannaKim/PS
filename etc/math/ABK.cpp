@@ -3,7 +3,7 @@
 // findk(char charX[]); Q) 근데 이런식으로 알려줄 수 있지 않았나?
 
 
-//시간복잡도 O(1)
+//시간복잡도: 최악 O(100) ~= O(1)
 int k;
 int findk(char charX[])
 {
