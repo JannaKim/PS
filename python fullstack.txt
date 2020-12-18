@@ -3,3 +3,29 @@ JSON: 딕셔너리 타입과 포맷 동일. 웹에서 컴퓨터와 컴퓨터 사
 Open API 웹: 크롤링을 통해 웹 구조, 데이터 다루기, Open API 익숙해질 수 있다.
 
 Rest API?
+
+라우팅이란? 적절한 목적지를 찾아주는 기능
+http://www.fun_coding.org/hello
+@app.route("/hello")
+def a(): <- 바로 밑 함수를 호출하게 해놨다.
+
+웹서버구동:
+run(host=None, port=None);
+
+웹서버는 정적인 HTML 페이지를 반환한다.
+
+파이썬 데코레이터: 및에 받은 함수 앞뒤에 넣어주기
+여러 데코레이터 작동하도록 만들어보기.
+
+<b> <i> 기능.
+app.route("/")
+
+Rest API?
+REST API: REST 아키텍처의 제약조건을 준수하는 애플리케이션 프로그래밍 인터페이스.
+REST: Representational State Transfer의 줄임말.
+
+API: Application Programming Interface는 애플리케이션 소프트웨어를 구축하고
+통합하는 정의 및 프로토콜 세트.
+API는 정보 제공자와 정보 사용자 간의 계약으로 지칭되며 소비자에게 필요한 콘텐츠와 생산자에게
+필요한 콘텐츠를 구성한다.
+
