@@ -1,5 +1,6 @@
 package recursion;
 import java.io.*;
+import java.math.BigInteger;
 public class HanoiOrder{
     private static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     private static void hanoi(int n, int start, int end )throws IOException
@@ -20,10 +21,15 @@ public class HanoiOrder{
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        bw.write(String.valueOf((int)Math.pow(2,n)-1)+'\n'); //?
-        bw.flush();
+        BigInteger bi= BigInteger.ONE;
+        for(int i=0; i<n;i++){
+            bi=bi.multiply(BigInteger.valueOf(2L));
+        } 
+        bi= bi.subtract(BigInteger.valueOf(1L));
+        bw.write(bi.toString()+'\n'); //?
+        if(n<=20){
         hanoi(n,1,3);
-        bw.flush();
+        }
         bw.close();
     }
 }
