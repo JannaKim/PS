@@ -1,18 +1,19 @@
 #include <stdio.h>
 #include <algorithm>
 using namespace std;
+int minCost[100000+1][3+1]={0,};
 int main()
 {
     int n;
     scanf("%d",&n);
-    int minCost[1000+1][3+1]={0,};
+    
     int r, g, b;
     scanf("%d %d %d",&r, &g, &b);
     minCost[0][0]= r;
     minCost[0][1]= g;
     minCost[0][2]= b;
-
-    for(int i=1;i<n;++i)
+    int i;
+    for(i=1;i<n;++i)
     {
         int r, g, b;
         scanf("%d %d %d",&r, &g, &b);
@@ -26,6 +27,22 @@ int main()
 
 
 /*
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, r, g, b, c[3] = { 0, }; scanf("%d", &n);
+	while (n--) {
+		scanf("%d %d %d", &r, &g, &b);
+		r += min(c[1], c[2]);
+		g += min(c[0], c[2]);
+		b += min(c[0], c[1]);
+		c[0] = r, c[1] = g, c[2] = b;
+	}
+	printf("%d", min(r, min(g, b)));
+}
+
 int main(){
     int n;
     scanf("%d",&n);

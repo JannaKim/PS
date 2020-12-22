@@ -2,9 +2,11 @@ package sec01.exam01;
 
 public class Main {
 	public static void main(String[] args) {
+	
+		A.C c = new A.C();
+		System.out.println(c.a);
+		A.C.method2();
 		/*
-		A a = new A();
-
 		A.B b = a.new B();
 		b.field1 = 3;
 		b.method1();
@@ -19,7 +21,7 @@ public class Main {
 		*/
 		
 		//���� Ŭ���� ��ü ������ ���� �޼ҵ� ȣ��
-		//a.method();
+
 	}
 
 	/**�ٱ� Ŭ����**/
@@ -29,19 +31,22 @@ public class Main {
 public class A {
 
 	public static class C {
+		int a = 4;
 		final static int field2=3;
-		static void method2() { }
+		static void method2() { System.out.println("정적 멤버 클래스 안의 정적메소");}
 	}
 
 	public static void method() {
 		/**���� Ŭ����**/
-		/*
-			public static class D {
-			public static int field1;
+		
+			class D {
+			int field1;
 			//static int field2;
-			public static void method1() { }
+			void method1() { System.out.println("local class's method");}
 			//static void method2() { }
 		}
-		*/
+		D d = new D();
+		d.method1();
+		
 	}
 }
