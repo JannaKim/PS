@@ -3,17 +3,21 @@ import java.io.*;
 import java.math.BigInteger;
 public class HanoiOrder{
     private static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    private static void hanoi(int n, int start, int end )throws IOException
+    private static void hanoi(int n, char start, char end )throws IOException
     {
         if(n==1)
         {
             bw.write(start+" "+end+"\n");
             return;           
         }
-        int middle = 6- start- end;
-        hanoi(n-1,start,middle);
+        int a=start-'0';
+        int b=end-'0';
+
+        int middle = 6- a- b;
+        char mid= (char)(middle+'0');
+        hanoi(n-1,start,mid);
         bw.write(start+" "+end+"\n");
-        hanoi(n-1,middle,end);
+        hanoi(n-1,mid,end);
 
     }
 
@@ -28,7 +32,7 @@ public class HanoiOrder{
         bi= bi.subtract(BigInteger.valueOf(1L));
         bw.write(bi.toString()+'\n'); //?
         if(n<=20){
-        hanoi(n,1,3);
+        hanoi(n,'1','3');
         }
         bw.close();
     }
