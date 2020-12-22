@@ -30,7 +30,6 @@ package programmers;
             String line= "";
             for(int j=0; j<n;j++)
             {
-    
                 if(binA.substring(j,j+1).equals("1") || binB.substring(j,j+1).equals("1") )
                     line+="#";
                 else line+=" ";
