@@ -11,7 +11,6 @@ scanf("%d\n%d\n%d",&a,&b,&c);
 long X = (long)a*b*c;
 
 string s= to_string(X);
-printf("%s\n",s.c_str());
 int info[10]= {0, };
 for(int i=0;i<s.length();i++)
     info[s[i]-'0']+=1;

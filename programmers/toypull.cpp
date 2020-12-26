@@ -5,18 +5,26 @@ using namespace std;
 
 int solution(vector<vector<int>> board, vector<int> moves) {
     int answer = 0;
-    vector<int> basket;
-    basket.push_back(-2);
+    int n= board.size();
     
-    vector<int> temp;
-    for(int i=0;i<board[0].size();i++)
-        temp.push_back(0);
-    board.push_back(temp);
+    vector<vector<int>> newboard;
+    for(int i=0; i<n;i++)
+    {
+        newboard.push_back()
+    }
+
+    for(auto it: reverse(board)){
+        for(int i=0;i<n;i++){
+            if(it[i]!=0) newboard[i].push_back(it[i]);
+        }
+    }
+
+    
     int doll=0;
     for(int i=0;i<moves.size();i++){
         int address= moves[i]-1;
-        if(board[0][address]<0){
-            if(board[-board[0][address]][address]==-2) continue;
+            if(newboard[address]
+            newboard[address].front_pop?()
             doll=board[-board[0][address]][address];
             if(basket.back()==doll) basket.pop_back();
             else basket.push_back(doll);
@@ -31,8 +39,8 @@ int solution(vector<vector<int>> board, vector<int> moves) {
         }
         else {
             int floor =0;
-            while(floor==0)++floor;
-            if(board[floor][address]==-2) continue;
+            while(board[floor][address]==0)++floor;
+            if(floor==n) continue;
             doll=board[floor][address];
             if(basket.back()==doll) basket.pop_back();
             else basket.push_back(doll);

@@ -285,4 +285,20 @@ A.C.~ 바로 쓸 수 있다.
 4. 중첩클래스에선, 바깥 클래스 멤버 이름과 똑같은 애들 만들 수 있는데 바깥 클래스 멤버 불러오려면?
  -> 바깥클래스.this 해준다.
 
+ 50강: 중첩 인터페이스
+ public class Button{
+     OnclickListener listener; 먼저 선언하고 세터 메소드의 매개변수로 객체 받은걸 여기에 저장.
+     void setListener(OnclickListener listener)
+     {
+         this.listener= listener;
+     }
+     static interface OnclickListener{
+         void onClick;
+     }
+ }
+
+ public class CallListener implements Button.OnclickListener{
+     public void onClick(){ "전화"}
+ }
+
  

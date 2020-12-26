@@ -36,9 +36,7 @@ class Solution {
                 System.out.println(reversed_board[i][j]);
             }
         }
-        
-        
-        
+     
         int answer = 0;
         return answer;
     }

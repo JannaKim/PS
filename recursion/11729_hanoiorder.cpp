@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <math.h>
+#define ll long long
 void hanoi(int n, int start, int end)
     {
         if(n==1){printf("%d %d\n",start, end); return;}
