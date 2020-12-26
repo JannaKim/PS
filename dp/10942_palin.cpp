@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <algorithm>
-#include <stdlib.h>
+#include <string.h>
 using namespace std;
 int main()
 {
@@ -10,15 +10,16 @@ int main()
     for(int i=0;i<n;i++)
         scanf("%d",&seq[i]);
 
-    int** dp= new int*[2001];
+    int** dp= new int*[n];
     for(int i=0;i<2001;i++)
     {
         dp[i]= new int[2001];
+        memset(dp[i], 0, sizeof(int)*1001);
     }
     
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;++i)
     {
-        for(int j=0;j<n-i;j++)
+        for(int j=0;j<n-i;++j)
         {
             if(seq[j]==seq[j+i])
             { 
@@ -38,5 +39,9 @@ int main()
         scanf("%d %d",&a,&b);
         printf("%d\n",dp[a-1][b-1]);
     }
+
+    for(int i=0;i<2001;++i)
+        delete [] dp[i];
+    delete [] dp;
     
 }
