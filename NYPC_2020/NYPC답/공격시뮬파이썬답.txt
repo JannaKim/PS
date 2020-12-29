@@ -1,0 +1,45 @@
+MAXN = 300005
+from functools import cmp_to_key
+ 
+def ccw(A, B, C) # comparator a, b - a - b
+    k = (B['x']-A['x'])(C['y']-A['y'])-(C['x']-A['x'])(B['y']-A['y'])
+    if k  0
+        return 1
+    if k == 0
+        return 0
+    return -1
+
+N, p, q = map(int, input().split(' '))
+
+A = {'x'p, 'y'0}
+B = {'x'q, 'y'0}
+
+points = []
+
+for i in range(N)
+    x, y = map(int, input().split(' '))
+    points.append({'x'x, 'y'y})
+
+points.sort(key=cmp_to_key(lambda p1, p2 ccw(A, p1, p2)))
+for rank, point in enumerate(points)
+    point['a_rank'] = rank
+
+points.sort(key=cmp_to_key(lambda p1, p2 -ccw(B, p1, p2)))
+for rank, point in enumerate(points)
+    point['b_rank'] = rank
+
+points.sort(key=lambda point point['a_rank'])
+
+ans = 0
+mn = 2e9 # 지금까지 나온 b_rank의 최소값
+
+for point in points
+    print(point)
+
+for point in points
+    # 이전까지 나온 Point, 지금 검사하는 Point, 앞으로 나올 Point
+    if point['b_rank']  mn
+        ans += 1
+        mn = point['b_rank']
+
+print(ans)

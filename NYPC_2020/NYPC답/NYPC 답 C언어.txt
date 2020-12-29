@@ -1,0 +1,846 @@
+5. 우승자 찾기
+#include <bits/stdc++.h>
+using namespace std;
+#define MAXK 10004
+ 
+int N, K;
+int A[MAXK];
+ 
+int main()
+{
+    scanf("%d%d", &N, &K); // 엔터나 스페이스바 상관없이 받음
+    for (int i=1;i<=K;i++) scanf("%d", A+i);
+    vector <int> ans;
+    for (int i=1;i<=N;i++){
+        vector <int> recent(N+1, 0);
+        bool chk = 0;
+        for (int j=1;j<=K;j++){
+            if (A[j] != i && recent[A[j]] >= recent[i]) chk = 1;
+            recent[A[j]] = j;
+            if (A[j] == i){
+                if (!chk){ ans.push_back(i); break; }
+                chk = 0;
+            }
+        }
+    }
+    printf("%d\n", ans.size());
+    for (int v: ans) printf("%d ", v); puts("");
+}
+
+6. 도토리를 주워라 
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define pb push_back
+#define all(v) (v).begin(), (v).end()
+ 
+const int MAXN = 55;
+const int MAXK = MAXN*MAXN;
+ 
+int N, K;
+char A[MAXN][MAXN];
+int B[MAXN][MAXN], C[MAXN][MAXN];
+int Y[MAXK], L[MAXK], R[MAXK];
+int V[MAXK], D[MAXK], F[MAXK];
+vector <int> con[MAXK];
+ 
+int main()
+{
+    scanf("%d", &N);
+    for (int i=1;i<=N;i++) scanf("%s", A[i]+1);
+    for (int i=1;i<=N;i++) for (int j=1;j<=N;j++){
+        if (A[i][j] == 'U') B[i][j] = 0;
+        else{
+            B[i][j] = B[i][j-1]+(A[i][j]=='D');
+            if (C[i][j-1]) C[i][j] = C[i][j-1];
+            else C[i][j] = ++K;
+            Y[C[i][j]] = i;
+            if (!L[C[i][j]]) L[C[i][j]] = j;
+            R[C[i][j]] = j;
+            if (j == N || A[i][j+1] == 'U') V[C[i][j]] = B[i][j];
+        }
+    }
+    for (int i=1;i<N;i++) for (int j=1;j<=N;j++) if (C[i][j] && C[i+1][j]) con[C[i][j]].pb(C[i+1][j]);
+    for (int i=1;i<=K;i++) D[i] = -1;
+    D[1] = V[1];
+    for (int i=1;i<K;i++) if (D[i] >= 0){
+        for (int t: con[i]) if (D[t] < D[i]+V[t]){
+            D[t] = D[i]+V[t];
+            F[t] = i;
+        }
+    }
+    // printf("%d\n", D[K]);
+    assert(D[K] != -1);
+    vector <int> path;
+    for (int i=K;i;i=F[i]) path.pb(i);
+    reverse(all(path));
+    assert(path.size() == N);
+    int y = 1, x = 1;
+    string cmd;
+    for (int i=1;i<=N;i++){
+        int row = path[i-1];
+        assert(Y[row] == i);
+        int l = L[row], r = R[row];
+        int nxt = N;
+        if (i < N){
+            int nrow = path[i];
+            int nl = L[nrow], nr = R[nrow];
+            nxt = max(l, nl);
+        }
+        while (x > l) cmd.pb('L'), x--;
+        while (x < r) cmd.pb('R'), x++;
+        while (x > nxt) cmd.pb('L'), x--;
+        while (x < nxt) cmd.pb('R'), x++;
+        assert(x == nxt);
+        if (i < N) cmd.pb('D'), y++;
+    }
+    assert(y == N && x == N);
+    puts(cmd.c_str());
+}
+
+
+7.#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    // for (char c1: string("+-*/.")) for (char c2: string("+-*/.")){
+    //     if (c1 == c2) continue;
+    //     if (c1 == '.')
+    //         printf("if ((a + b/10) %c c == d) printf(\"%%.0f%c%%.0f%c%%.0f=%%.0f\\n\", a, b, c, d);\n", c2, c1, c2);
+    //     else if (c2 == '.')
+    //         printf("if (a %c (b + c/10) == d) printf(\"%%.0f%c%%.0f%c%%.0f=%%.0f\\n\", a, b, c, d);\n", c1, c1, c2);
+    //     else
+    //         printf("if (a %c b %c c == d) printf(\"%%.0f%c%%.0f%c%%.0f=%%.0f\\n\", a, b, c, d);\n", c1, c2, c1, c2);
+    // }
+    int T;
+    for (scanf("%d", &T);T--;){
+        double a, b, c, d;
+        scanf("%lf%lf%lf%lf", &a, &b, &c, &d);
+        if (a + b - c == d) printf("%.0f+%.0f-%.0f=%.0f\n", a, b, c, d);
+        if (a + b * c == d) printf("%.0f+%.0f*%.0f=%.0f\n", a, b, c, d);
+        if (a + b / c == d) printf("%.0f+%.0f/%.0f=%.0f\n", a, b, c, d);
+        if (a + (b + c/10) == d) printf("%.0f+%.0f.%.0f=%.0f\n", a, b, c, d);
+        if (a - b + c == d) printf("%.0f-%.0f+%.0f=%.0f\n", a, b, c, d);
+        if (a - b * c == d) printf("%.0f-%.0f*%.0f=%.0f\n", a, b, c, d);
+        if (a - b / c == d) printf("%.0f-%.0f/%.0f=%.0f\n", a, b, c, d);
+        if (a - (b + c/10) == d) printf("%.0f-%.0f.%.0f=%.0f\n", a, b, c, d);
+        if (a * b + c == d) printf("%.0f*%.0f+%.0f=%.0f\n", a, b, c, d);
+        if (a * b - c == d) printf("%.0f*%.0f-%.0f=%.0f\n", a, b, c, d);
+        if (a * b / c == d) printf("%.0f*%.0f/%.0f=%.0f\n", a, b, c, d);
+        if (a * (b + c/10) == d) printf("%.0f*%.0f.%.0f=%.0f\n", a, b, c, d);
+        if (a / b + c == d) printf("%.0f/%.0f+%.0f=%.0f\n", a, b, c, d);
+        if (a / b - c == d) printf("%.0f/%.0f-%.0f=%.0f\n", a, b, c, d);
+        if (a / b * c == d) printf("%.0f/%.0f*%.0f=%.0f\n", a, b, c, d);
+        if (a / (b + c/10) == d) printf("%.0f/%.0f.%.0f=%.0f\n", a, b, c, d);
+        if ((a + b/10) + c == d) printf("%.0f.%.0f+%.0f=%.0f\n", a, b, c, d);
+        if ((a + b/10) - c == d) printf("%.0f.%.0f-%.0f=%.0f\n", a, b, c, d);
+        if ((a + b/10) * c == d) printf("%.0f.%.0f*%.0f=%.0f\n", a, b, c, d);
+        if ((a + b/10) / c == d) printf("%.0f.%.0f/%.0f=%.0f\n", a, b, c, d);
+    }
+}
+
+8. 이어 달리기
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int N;
+int A[401];
+ 
+int proc(int low)
+{
+    int ret = 0;
+    for (int l=1,r=N;l<r;){ //끝나는 조건
+        while (l < r){
+            if (A[l]+A[r] < low) l++;
+            else if (A[l]+A[r] >= low+1000) r--;
+            else break;
+        }
+        if (l >= r) break;
+        ret++; l++; r--;
+    }
+    return ret;
+}
+ 
+int main()
+{
+    scanf("%d", &N);
+    for (int i=1;i<=N;i++){
+        int a, b, c; scanf("%02d:%02d:%02d", &a, &b, &c);
+        A[i] = c + b*100 + a*100*60;
+    }
+    sort(A+1, A+N+1);
+    int ans = 0;
+    for (int i=1;i<N;i++) for (int j=i+1;j<=N;j++)
+        ans = max(ans, proc(A[i]+A[j]));
+    printf("%d\n", ans);
+}
+
+9.몰이사냥
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define MAXN 100005
+typedef long long lld;
+ 
+int X, R, N;
+struct Z{ int a, b; } A[MAXN];
+ 
+void possible(){ puts("T"); exit(0); }
+void impossible(){ puts("F"); exit(0); }
+ 
+lld f(lld t)
+{
+    lld mn = 4e18, mx = -4e18;
+    for (int i=1;i<=N;i++){
+        lld x = A[i].a * t + A[i].b;
+        mn = min(mn, x);
+        mx = max(mx, x);
+    }
+    if (mx-mn <= R) possible();
+    return mx - mn;
+}
+ 
+int main()
+{ 
+    scanf("%d%d%d", &X, &R, &N);
+    for (int i=1;i<=N;i++) scanf("%d%d", &A[i].b, &A[i].a);
+    lld t_lower = 0, t_upper = 3e9;
+    for (int i=1;i<=N;i++){
+        if (A[i].a == 0){
+            if (A[i].b < 0 || A[i].b > X+R) impossible();
+        }else{
+            if (A[i].a > 0){ // 이진탐색
+                lld p = A[i].b > 0 ? 0 : (-A[i].b-1) / A[i].a + 1;
+                lld q = A[i].b > X+R ? -1 : ((lld)X+R - A[i].b) / A[i].a;
+                if (t_lower < p) t_lower = p;
+                if (t_upper > q) t_upper = q;
+            }else{
+                lld p = A[i].b < X+R ? 0 : ((lld)A[i].b - X-R -1) / -A[i].a + 1;
+                lld q = A[i].b < 0 ? -1 : A[i].b / -A[i].a;
+                if (t_lower < p) t_lower = p;
+                if (t_upper > q) t_upper = q;
+            }
+        }
+    }
+    if (t_lower > t_upper) impossible();
+    while (t_lower <= t_upper){
+        lld p = (t_lower*2 + t_upper) / 3;
+        lld q = (t_lower + t_upper*2) / 3;
+        if (p == q) break;
+        if (f(p) <= f(q)) t_upper = q-1;
+        else t_lower = p+1;
+    }
+    for (lld i=t_lower;i<=t_upper;i++) f(i);
+    impossible();
+}
+
+
+10. 탐험 로봇
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int yy[] = {-1, 0, 1, 0};
+int xx[] = {0, 1, 0, -1};
+ 
+int N, M;
+string type;
+ 
+template <typename T>
+struct MAP {
+    T mem[1003];
+    T& operator()(int y, int x){
+        return mem[(y-1)*M+x-1];
+    }
+};
+MAP <char> A;
+MAP <bool> vis;
+ 
+MAP <int> num; int P, Q;
+vector <int> con[1001];
+bool used[1001]; int match[1001], dist[1001];
+ 
+void floodfill(int y, int x)
+{
+    vis(y, x) = 1;
+    for (int i=0;i<4;i++){
+        int ny = y+yy[i], nx = x+xx[i];
+        if (ny < 1 || ny > N || nx < 1 || nx > M || vis(ny, nx) || A(ny, nx) == 'S') continue;
+        floodfill(ny, nx);
+    }
+}
+ 
+void bfs()
+{
+    queue <int> que;
+    for (int i=1;i<=P;i++) dist[i] = 1e9;
+    for (int i=1;i<=P;i++) if (!used[i]) dist[i] = 0, que.push(i);
+    while (!que.empty()){
+        int q = que.front(); que.pop();
+        for (int t: con[q]){
+            int m = match[t];
+            if (m && dist[m] == 1e9) dist[m] = dist[q]+1, que.push(m);
+        }
+    }
+}
+ 
+bool dfs(int n)
+{
+    for (int t: con[n]){
+        int m = match[t];
+        if (!m || dist[m] == dist[n]+1 && dfs(m)){
+            used[n] = 1; match[t] = n;
+            return 1;
+        }
+    }
+    dist[n] = 1e9;
+    return 0;
+}
+ 
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0);
+    cin >> N >> M >> type;
+    stringstream ss;
+    for (int i=1;i<=N;i++){
+        string line;
+        cin >> line;
+        ss << line;
+    }
+    ss >> A.mem;
+    if (type == "min"){
+        int ans = 0;
+        for (int i=1;i<=N;i++) for (int j=1;j<=M;j++) if (A(i, j) == 'L' && !vis(i, j)){
+            floodfill(i, j);
+            ans++;
+        }
+        printf("%d\n", ans);
+    }else{
+        int ans = 0;
+        for (int i=1;i<=N;i++) for (int j=1;j<=M;j++) if (A(i, j) == '?'){
+            for (int d=0;d<4;d++){
+                int ny = i+yy[d], nx = j+xx[d];
+                if (ny < 1 || ny > N || nx < 1 || nx > M) continue;
+                if (A(ny, nx) == 'L') A(i, j) = 'S';
+            }
+        }
+        for (int i=1;i<=N;i++) for (int j=1;j<=M;j++) if (A(i, j) == 'L' && !vis(i, j)){
+            floodfill(i, j);
+            ans++;
+        }
+        for (int i=1;i<=N;i++) for (int j=1;j<=M;j++) if (A(i, j) == '?'){
+            if (i+j&1) num(i, j) = ++P;
+            else num(i, j) = ++Q;
+        }
+        for (int i=1;i<=N;i++) for (int j=1;j<=M;j++) if (A(i, j) == '?' && i+j&1){
+            for (int d=0;d<4;d++){
+                int ny = i+yy[d], nx = j+xx[d];
+                if (ny < 1 || ny > N || nx < 1 || nx > M || !num(ny, nx)) continue;
+                con[num(i, j)].push_back(num(ny, nx));
+            }
+        }
+        int matched = 0;
+        for (;;){
+            bfs();
+            int flow = 0;
+            for (int i=1;i<=P;i++) if (!used[i] && dfs(i)) flow++;
+            if (!flow) break;
+            matched += flow;
+        }
+        ans += P+Q - matched;
+        printf("%d\n", ans);
+    }
+}
+
+11. 격자게임
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int A, B, C;
+bool D[101][101][101];
+ 
+int main()
+{
+    cin >> A >> B >> C;
+    D[0][0][0] = 1;
+    for (int i=0;i<=A;i++) for (int j=i;j<=B;j++) for (int k=j;k<=C;k++) if (!D[i][j][k]){
+        auto f = [&](){
+            for (int t=0;t<i;t++) if (!D[t][j][k] || !D[t][t][k] || !D[t][t][t]) return 1;
+            for (int t=i;t<j;t++) if (!D[i][t][k] || !D[i][t][t]) return 1;
+            for (int t=j;t<k;t++) if (!D[i][j][t]) return 1;
+            return 0;
+        };
+        D[i][j][k] = f();
+    }
+ 
+    for (;;){
+        assert(D[A][B][C]);
+        auto test = [&](int a, int b, int c){
+            if (D[a][b][c]) return 0;
+            if (c != C) cout << 3 << " " << c+1 << endl << flush;
+            else if (b != B) cout << 2 << " " << b+1 << endl << flush;
+            else if (a != A) cout << 1 << " " << a+1 << endl << flush;
+            else assert(0);
+            A = a, B = b, C = c;
+            return 1;
+        };
+        auto find = [&](){
+            for (int i=0;i<A;i++) if (test(i, B, C) || test(i, i, C) || test(i, i, i)) return 1;
+            for (int i=A;i<B;i++) if (test(A, i, C) || test(A, i, i)) return 1;
+            for (int i=B;i<C;i++) if (test(A, B, i)) return 1;
+            return 0;
+        };
+        assert(find());
+        int p, q;
+        cin >> p >> q;
+        if (p == 1) A = q-1;
+        if (p == 2) B = q-1;
+        if (p == 3) C = q-1;
+        B = min(B, C);
+        A = min(A, B);
+        if (!A && !B && !C) break;
+    }
+}
+
+
+12. 사회적 거리두기
+#include <bits/stdc++.h>
+using namespace std;
+ 
+const int yy[] = {-1, -1, -1, 0, 1, 1, 1, 0}, xx[] = {-1, 0, 1, 1, 1, 0, -1, -1};
+ 
+int N, K;
+short D[19][18][1<<19];
+bool F[19][18][1<<19];
+bool A[51][51];
+ 
+int main()
+{
+    scanf("%d%d", &N, &K);
+    for (int i=1;i<=K;i++){
+        int r, c; scanf("%d%d", &r, &c); r--; c--;
+        A[r][c] = 1;
+    }
+    memset(D, -1, sizeof(D));
+    D[0][0][0] = 0;
+    for (int i=0;i<N;i++){
+        for (int j=0;j<N;j++) for (int msk=0;msk<1<<N+1;msk++) if (D[i][j][msk] >= 0){
+            short myv = D[i][j][msk];
+            int sub = (1 << (N+1))-1;
+            int nmsk = (msk << 1) & sub;
+ 
+            int ny = i, nx = j+1;
+            if (nx == N) ny++, nx = 0;
+ 
+            if (D[ny][nx][nmsk] < myv){
+                D[ny][nx][nmsk] = myv;
+                F[ny][nx][nmsk] = msk>>N&1;
+            }
+ 
+            if (j > 0 && msk>>N&1 || msk>>N-1&1 || j+1 < N && msk>>N-2&1 || j > 0 && msk&1 || A[i][j]) continue;
+ 
+            if (D[ny][nx][nmsk^1] < myv+1){
+                D[ny][nx][nmsk^1] = myv+1;
+                F[ny][nx][nmsk^1] = msk>>N&1;
+            }
+        }
+    }
+    short ans = 0;
+    int y = N, x = 0, cur = 0;
+    for (int msk=0;msk<1<<N+1;msk++){
+        if (ans < D[N][0][msk]){
+            ans = D[N][0][msk];
+            cur = msk;
+        }
+    }
+    printf("%d\n", ans);
+    if (!ans) return 0;
+    vector <pair<int, int>> arr;
+    while (y != 0 || x != 0){
+        if (cur&1){
+            if (x > 0) arr.emplace_back(y, x-1);
+            else arr.emplace_back(y-1, N-1);
+        }
+        int bef = cur>>1 | (F[y][x][cur] << N);
+        if (x == 0) y--, x = N-1;
+        else x--;
+        cur = bef;
+    }
+    assert(arr.size() == ans);
+    for (auto &p: arr) printf("%d %d\n", p.first+1, p.second+1);
+}
+
+
+13.물풍선 아티스트
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define sc second
+#define sz(v) ((int)(v).size())
+#define all(v) (v).begin(), (v).end()
+typedef long long lld;
+typedef pair<int, int> pii;
+ 
+/* Fast Integer IO */
+template<typename T> inline T read(T &x){
+    char c=getchar();bool f=0;x=0;
+    while(!isdigit(c)) f|=c=='-',c=getchar();
+    while(isdigit(c)) x=(x<<1)+(x<<3)+(c^48),c=getchar();
+    if(f) x=-x;return x;
+}
+template<typename T, typename... Args> inline void read(T &x, Args& ...args){
+    read(x); read(args...);
+}
+template<typename T> inline void write(T x){
+    if(x<0) putchar('-'),write(-x);
+    else{if(x>9) write(x/10);putchar('0'+x%10);}
+}
+ 
+#define debug(...) fprintf(stderr, __VA_ARGS__), fflush(stderr)
+ 
+#define MAXN 1000006
+ 
+int N;
+int X[MAXN], Y[MAXN], P[MAXN];
+int L[MAXN], R[MAXN], U[MAXN], D[MAXN];
+int A[MAXN];
+bool V[MAXN];
+ 
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    read(N);
+    for (int i=1;i<=N;i++) read(X[i], Y[i]), A[i] = i;
+    sort(A+1, A+N+1, [](const int &a, const int &b){
+        return X[a] != X[b] ? X[a] < X[b] : Y[a] < Y[b];
+    });
+    for (int i=1;i<=N;i++){
+        if (i > 1 && X[A[i-1]] == X[A[i]] && Y[A[i-1]]+1 == Y[A[i]]) D[A[i]] = D[A[i-1]]+1;
+        else D[A[i]] = 0;
+    }
+    for (int i=N;i;i--){
+        if (i < N && X[A[i+1]] == X[A[i]] && Y[A[i+1]]-1 == Y[A[i]]) U[A[i]] = U[A[i+1]]+1;
+        else U[A[i]] = 0;
+    }
+    sort(A+1, A+N+1, [](const int &a, const int &b){
+        return Y[a] != Y[b] ? Y[a] < Y[b] : X[a] < X[b];
+    });
+    for (int i=1;i<=N;i++){
+        if (i > 1 && Y[A[i-1]] == Y[A[i]] && X[A[i-1]]+1 == X[A[i]]) L[A[i]] = L[A[i-1]]+1;
+        else L[A[i]] = 0;
+    }
+    for (int i=N;i;i--){
+        if (i < N && Y[A[i+1]] == Y[A[i]] && X[A[i+1]]-1 == X[A[i]]) R[A[i]] = R[A[i+1]]+1;
+        else R[A[i]] = 0;
+    }
+    for (int i=1;i<=N;i++) P[i] = min({L[i], R[i], D[i], U[i]});
+ 
+    {
+        int mx;
+        for (int i=1;i<=N;i++){
+            if (i == 1 || Y[A[i-1]] != Y[A[i]]) mx = 0;
+            if (P[A[i]]) mx = max(mx, X[A[i]]+P[A[i]]);
+            if (X[A[i]] <= mx) V[A[i]] = 1;
+        }
+    }
+    {
+        int mn;
+        for (int i=N;i;i--){
+            if (i == N || Y[A[i+1]] != Y[A[i]]) mn = 2e9;
+            if (P[A[i]]) mn = min(mn, X[A[i]]-P[A[i]]);
+            if (X[A[i]] >= mn) V[A[i]] = 1;
+        }
+    }
+ 
+    sort(A+1, A+N+1, [](const int &a, const int &b){
+        return X[a] != X[b] ? X[a] < X[b] : Y[a] < Y[b];
+    });
+    {
+        int mx;
+        for (int i=1;i<=N;i++){
+            if (i == 1 || X[A[i-1]] != X[A[i]]) mx = 0;
+            if (P[A[i]]) mx = max(mx, Y[A[i]]+P[A[i]]);
+            if (Y[A[i]] <= mx) V[A[i]] = 1;
+        }
+    }
+    {
+        int mn;
+        for (int i=N;i;i--){
+            if (i == N || X[A[i+1]] != X[A[i]]) mn = 2e9;
+            if (P[A[i]]) mn = min(mn, Y[A[i]]-P[A[i]]);
+            if (Y[A[i]] >= mn) V[A[i]] = 1;
+        }
+    }
+ 
+    int ans = 0;
+    for (int i=1;i<=N;i++){
+        if (!V[i]) puts("-1"), exit(0);
+        if (P[i]) ans++;
+    }
+ 
+    write(ans); putchar('\n');
+    for (int i=1;i<=N;i++) if (P[i]){
+        write(X[i]); putchar(' ');
+        write(Y[i]); putchar(' ');
+        write(P[i]); putchar('\n');
+    }
+
+}
+
+14.공격 상황 시뮬레이션
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define sc second
+#define sz(v) ((int)(v).size())
+#define all(v) (v).begin(), (v).end()
+typedef long long lld;
+typedef pair<int, int> pii;
+ 
+/* Fast Integer IO */
+template<typename T> inline T read(T &x){
+    char c=getchar();bool f=0;x=0;
+    while(!isdigit(c)) f|=c=='-',c=getchar();
+    while(isdigit(c)) x=(x<<1)+(x<<3)+(c^48),c=getchar();
+    if(f) x=-x;return x;
+}
+template<typename T, typename... Args> inline void read(T &x, Args& ...args){
+    read(x); read(args...);
+}
+template<typename T> inline void write(T x){
+    if(x<0) putchar('-'),write(-x);
+    else{if(x>9) write(x/10);putchar('0'+x%10);}
+}
+ 
+#define debug(...) fprintf(stderr, __VA_ARGS__), fflush(stderr)
+ 
+#define MAXN 300005
+ 
+int N, P, Q;
+int X[MAXN], Y[MAXN], C[MAXN];
+pii A[MAXN];
+ 
+int ccw(int ax, int ay, int bx, int by, int cx, int cy)
+{
+    lld k = (lld)(bx-ax)*(cy-ay)-(lld)(cx-ax)*(by-ay);
+    if (k > 0) return 1;
+    if (k) return -1;
+    return 0;
+}
+ 
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    read(N, P, Q);
+    for (int i=1;i<=N;i++) read(X[i], Y[i]), C[i] = i;
+    sort(C+1, C+N+1, [](const int &a, const int &b){
+        return ccw(P, 0, X[a], Y[a], X[b], Y[b]) > 0;
+    });
+    for (int i=1;i<=N;i++) A[C[i]].fr = i;
+    sort(C+1, C+N+1, [](const int &a, const int &b){
+        return ccw(Q, 0, X[a], Y[a], X[b], Y[b]) < 0;
+    });
+    for (int i=1;i<=N;i++) A[C[i]].sc = i;
+    sort(A+1, A+N+1);
+    int ans = 0, mn = 2e9;
+    for (int i=1;i<=N;i++){
+        if (A[i].sc < mn) ans++, mn = A[i].sc;
+    }
+    write(ans); putchar('\n');
+}
+
+15.메이플 월드 라이딩 여행
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define sc second
+#define sz(v) ((int)(v).size())
+#define all(v) (v).begin(), (v).end()
+typedef long long lld;
+typedef pair<int, int> pii;
+ 
+/* Fast Integer IO */
+template<typename T> inline T read(T &x){
+    char c=getchar();bool f=0;x=0;
+    while(!isdigit(c)) f|=c=='-',c=getchar();
+    while(isdigit(c)) x=(x<<1)+(x<<3)+(c^48),c=getchar();
+    if(f) x=-x;return x;
+}
+template<typename T, typename... Args> inline void read(T &x, Args& ...args){
+    read(x); read(args...);
+}
+template<typename T> inline void write(T x){
+    if(x<0) putchar('-'),write(-x);
+    else{if(x>9) write(x/10);putchar('0'+x%10);}
+}
+ 
+#define debug(...) fprintf(stderr, __VA_ARGS__), fflush(stderr)
+ 
+#define MAXN 100005
+ 
+const int BOUND = 317;
+int N, M, K, S, X;
+int num[MAXN];
+vector <pii> con[MAXN];
+vector <pii> adj[MAXN];
+vector <pii> massive_in[MAXN];
+ 
+int proc(lld bound)
+{
+    function<bool(int, lld)> dfs;
+    vector <bool> vis(N+1, 0);
+    int cnt = 0;
+    for (int i=1;i<=N;i++) if (num[i]){
+        int x = num[i], n = sz(con[i]);
+        adj[x].resize(n+2);
+        for (int j=0;j<n+2;j++)
+            adj[x][j].fr = j-1, adj[x][j].sc = j+1;
+    }
+    dfs = [&](int n, lld d){
+        if (++cnt >= K) return 1;
+        vis[n] = 1;
+        for (const auto [x, t]: massive_in[n]){
+            auto [prv, nxt] = adj[x][t];
+            adj[x][prv].sc = nxt;
+            adj[x][nxt].fr = prv;
+        }
+        if (num[n]){
+            int i = adj[num[n]][0].sc;
+            while (i <= sz(con[n])){
+                int t = con[n][i-1].sc, v = con[n][i-1].fr;
+                assert(!vis[t]);
+                if (d+v > bound) break;
+                if (dfs(t, d+v)) return 1;
+                i = adj[num[n]][i].sc;
+            }
+        }else{
+            for (int i=0;i<sz(con[n]);i++){
+                int t = con[n][i].sc, v = con[n][i].fr;
+                if (vis[t]) continue;
+                if (d+v > bound) break;
+                if (dfs(t, d+v)) return 1;
+            }
+        }
+        vis[n] = 0;
+        for (const auto [x, t]: massive_in[n]){
+            auto [prv, nxt] = adj[x][t];
+            adj[x][prv].sc = t;
+            adj[x][nxt].fr = t;
+        }
+        return 0;
+    };
+    dfs(S, 0);
+    return cnt;
+}
+ 
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    read(N, M, K, S);
+    lld sum = 0;
+    for (int i=1;i<=M;i++){
+        int u, v, t; read(u, v, t); sum += t;
+        con[u].push_back({t, v});
+    }
+    for (int i=1;i<=N;i++){
+        sort(all(con[i]));
+        if (sz(con[i]) > BOUND){
+            num[i] = ++X;
+            for (int j=0;j<sz(con[i]);j++)
+                massive_in[con[i][j].sc].push_back({X, j+1});
+        }
+    }
+    lld s = 0, e = sum, ans = -1;
+    while (s <= e){
+        lld m = s+e >> 1;
+        if (proc(m) >= K) e = m-1, ans = m;
+        else s = m+1;
+    }
+    write(ans); putchar('\n');
+}
+
+17. 덕분에 챌린지
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define sc second
+#define sz(v) ((int)(v).size())
+#define all(v) (v).begin(), (v).end()
+typedef long long lld;
+typedef pair<int, int> pii;
+ 
+/* Fast Integer IO */
+template<typename T> inline T read(T &x){
+    char c=getchar();bool f=0;x=0;
+    while(!isdigit(c)) f|=c=='-',c=getchar();
+    while(isdigit(c)) x=(x<<1)+(x<<3)+(c^48),c=getchar();
+    if(f) x=-x;return x;
+}
+template<typename T, typename... Args> inline void read(T &x, Args& ...args){
+    read(x); read(args...);
+}
+template<typename T> inline void write(T x){
+    if(x<0) putchar('-'),write(-x);
+    else{if(x>9) write(x/10);putchar('0'+x%10);}
+}
+ 
+#define debug(...) fprintf(stderr, __VA_ARGS__), fflush(stderr)
+#define MAXN 100005
+ 
+int N, M, K, S;
+vector <pii> con[MAXN];
+ 
+int proc(lld bound)
+{
+    function<bool(int, lld)> dfs;
+    vector <bool> vis(N+1, 0);
+    int cnt = 0;
+    dfs = [&](int n, lld d){
+        if (++cnt >= K) return 1;
+        vis[n] = 1;
+        for (int i=0;i<sz(con[n]);i++){
+            int t = con[n][i].sc, v = con[n][i].fr;
+            if (vis[t]) continue;
+            if (d+v > bound) break;
+            if (dfs(t, d+v)) return 1;
+        }
+        vis[n] = 0;
+        return 0;
+    };
+    dfs(S, 0);
+    return cnt;
+}
+ 
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    read(N, M, K, S);
+    assert(K <= 10000);
+    lld sum = 0;
+    for (int i=1;i<=M;i++){
+        int u, v, t; read(u, v, t); sum += t;
+        con[u].push_back({t, v});
+    }
+    for (int i=1;i<=N;i++) sort(all(con[i]));
+    lld s = 0, e = sum, ans = -1;
+    while (s <= e){
+        lld m = s+e >> 1;
+        if (proc(m) >= K) e = m-1, ans = m;
+        else s = m+1;
+    }
+    write(ans); putchar('\n');
+}
+
+

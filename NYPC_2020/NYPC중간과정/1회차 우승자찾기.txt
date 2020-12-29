@@ -1,0 +1,30 @@
+a = int(input())
+b = int(input())
+c = [int(i) for i in input().split()]
+
+
+L=[0]*(a+1) # 플레이어 수 만큼의 크기로 마지막으로 돈 타이머시간 넣어줌
+
+
+M=[b]*a # M[1]는  player1 의 공간: 최소시간만
+for t in range(1,b+1):
+    lap = t - L[c[t-1]] # 사진찍힌 아이가 그  한바퀴 도는데 몇초걸렸는지
+    if M[c[t-1]-1] ==0:
+        M[c[t-1]-1] = lap
+    elif lap < M[c[t-1]-1]:
+        M[c[t-1]-1] = lap
+    L[c[t-1]] = t
+
+minn = min(M)
+
+if M.count(min(M))>1:
+    cnt = M.count(min(M))
+    print(cnt)
+    while(cnt>0):
+        print(M.index(min(M))+1,end=' ')
+        M[M.index(min(M))]+=1
+        cnt-=1
+
+else:
+    print(1)
+    print(M.index(min(M))+1)

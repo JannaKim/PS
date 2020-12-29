@@ -1,0 +1,37 @@
+a=int(input())
+
+L = {}
+
+
+for i in range(a):
+    [x,y]=[int(i) for i in input().split()]
+    if x in L.keys():
+        L[x].append(y)
+    else:
+        L[x]=[y]
+        
+        
+ans=[]
+
+for x,ys in L.items():
+    for y in ys:
+        n=1
+        try:
+            while (y in L[x-n]) and (y in L[x+n]) and (y-n and y+n in ys):
+            
+                n+=1
+            
+            if n==1:
+                pass
+            else:
+                ans.append(str(x)+' '+str(y)+' '+str(n-1))
+        except:
+            pass
+        
+
+if len(ans)==0:
+                       
+    print('-1')
+else:
+    for k in ans:
+        print(k)
