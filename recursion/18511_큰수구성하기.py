@@ -20,7 +20,7 @@ def rec(digit,S,end):
             rec(digit+1,tempS,end)
 
 rec(0,S,lenN)
-rec(0,['-']*(lenN-1),lenN-1)
+rec(0,['-']*(lenN-1),lenN-1) # 작은 자리수일때.
 
 
 '''
