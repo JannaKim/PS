@@ -18,14 +18,25 @@ int main()
         app.push_back(x);
     }
     vector<int> on;
-    for(int i=0;i<n;++i)
+    bool valids[102]; 
+    memset(valids,false,102);//loc var should be initialized
+    int initPlug=0;
+    int i;
+    for(i=0;i<k;++i)
     {
-        on.push_back(app[i]);
+        if(valids[app[i]]==false){
+            valids[app[i]]=true;
+            on.push_back(app[i]);
+            initPlug++;
+        }
+        if(initPlug==n) break;
     }
-
-
+    int left=n-initPlug;
+    while(left--){
+        on.push_back(0);
+    }
     int cnt=0;
-    for(int i=n;i<k;++i)
+    for(;i<k;++i)
     {
 
         bool pass=false;
@@ -39,31 +50,39 @@ int main()
             bool check[102]; 
             memset(check,false,102);//loc var should be initialized
             int checked=0;
+            int last_to_be_used=0;
             for(int j=i+1;j<k;++j)
             {
-                if(check[app[j]]==false){
-                    check[app[j]]=true;
-                    checked++;
+                for(auto it: on){
+                    if(it==app[j]){
+                        if(check[app[j]]==false){
+                            check[app[j]]=true;
+                            checked++;
+                        }
+                        last_to_be_used=app[j];
+                        break;
+                    }
                 }
-                if(checked==n){ //all plugged app is valid: plug out anything
-                    int popped= on.back();
-                    on.pop_back();
-                    on.push_back(app[i]);
-                    cnt++;
-                    //printf("%d뽑고 %d넣음\n",popped,app[i]);
+                if(checked==n){ //all plugged app is valid: plug out anything= x, unplug lastly used?
                     break;
                 }
+                
             }
 
-            if(checked!=n){// plugged app that is "no more used" exists
+            // plug out last_ or plugged app that is "no more used" exists
                 for(auto& it: on){
-                    if(check[it]==false){// plug out anything no more used
+                    if((check[it]==false && checked!=n) || (it==last_to_be_used&& checked==n)){// plug out anything no more used
+                        for(auto it: on) printf("%d ",it);
+                        printf("->\n");
                         it=app[i];
+                        for(auto it: on) printf("%d ",it);
+                        printf("\nㅡㅡ\n");
+                        
                         cnt++;
                         break;
                     }
                 }
-            }
+            
 
             
         }
@@ -71,7 +90,6 @@ int main()
     printf("%d\n",cnt);
 
 }
-
 /*
 
 2 7
@@ -89,5 +107,6 @@ int main()
 
 print cnt
 */
+
 
 
