@@ -7,10 +7,10 @@ public class Starring_TeamMS{
 	
 	public static void Stars(int n, int len) {
 		for(int i = n; i < len; i++) {
-			a[n][i] = "*";
-			a[i][n] = "*";
-			a[i][len-1] = "*";
-			a[len-1][i] = "*";
+			a[n][i] = "*"; //지붕
+			a[i][n] = "*"; //좌벽
+			a[i][len-1] = "*"; // 바닥
+			a[len-1][i] = "*"; // 우벽
 		}
 		
 		if(len == 1) return;
