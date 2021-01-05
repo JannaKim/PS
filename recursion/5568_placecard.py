@@ -1,3 +1,4 @@
+# 5568 카드놓기.py
 n= int(input())
 k= int(input())
 

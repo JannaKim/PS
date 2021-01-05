@@ -1,3 +1,4 @@
+//10994 별찍기- 19.cpp
 #include <stdio.h>
 #include <string>
 using namespace std;

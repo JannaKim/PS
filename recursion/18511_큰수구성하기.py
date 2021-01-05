@@ -1,3 +1,4 @@
+# 18511 큰 수 구성하기
 from sys import *
 
 N, K = map(int, input().split())
@@ -9,7 +10,7 @@ S = ['-']*lenN
 
 def rec(digit,S,end):
     if digit==end: 
-        num= int("".join(S));
+        num= int("".join(S)); # 자바 찾아보기
         if num<=N: 
             print(num)
             exit()

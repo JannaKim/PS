@@ -1,3 +1,4 @@
+#1769 3의 배수
 input= input()
 
 cnt=0
@@ -10,12 +11,10 @@ def add(s):
             print('YES')
         else:
             print('NO')
-    else:
-        cnt+=1
-        sum=0
-        for el in s:
-            sum+=int(el)
-        add(str(sum))
+        return
+    cnt+=1
+    sumup=sum([int(el) for el in s])
+    add(str(sumup))
 
 add(input)
     
