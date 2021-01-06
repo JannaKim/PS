@@ -31,10 +31,8 @@ public class CompBigNumTeamOne18511 {
 	}
 	
 	public static void recursive(int num, int ten)throws IOException {
-		if(num<1000){
-			bw.write(num+"\n");
-			bw.flush();
-		}
+
+
 		if(num>N) return;
 
         ans = Math.max(ans, num);
