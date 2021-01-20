@@ -42,9 +42,9 @@ def qs(L,first,last):
     i=first+1
     j=last
     while i<=j: 
-        while i<=last and L[i]<=L[p] or i==p:
+        while i<=last and L[i]<=L[p]:
             i+=1
-        while j<=first+1 and L[j]>L[p] or i==p:
+        while L[j]>L[p]:
             j-=1
         if i<j:
             L[i], L[j] = L[j], L[i]

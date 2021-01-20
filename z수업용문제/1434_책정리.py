@@ -22,3 +22,8 @@ while True:
 if stock:
     wasted+=sum(stock)
 print(wasted)
+
+'''
+input()
+print(sum(map(int,input().split()))-sum(map(int,input().split())))
+'''

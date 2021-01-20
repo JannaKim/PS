@@ -24,8 +24,8 @@ DY=[-1, -1, 0, 1, 1, 1, 0, -1] # %8
 DX=[0, -1, -1, -1, 0, 1, 1, 1]
 
 def moveFish():
-    [print(*el) for el in sea]
-    print('fish are moving')
+    #[print(*el) for el in sea]
+    #print('fish are moving')
     for i in r(1,17):
         cy, cx= fish[i]
         if not cy+cx: continue
@@ -45,7 +45,7 @@ def moveFish():
                 sea[cy][cx], sea[ny][nx]= 0, sea[cy][cx]
                 fishhead[i]=j%8
                 break
-        [print(*el) for el in sea]
+        #[print(*el) for el in sea]
 mx=0
 def dfs(y, x, exp, lastfish):
     global mx
@@ -53,41 +53,55 @@ def dfs(y, x, exp, lastfish):
     global fish
     global fishhead
     head= fishhead[lastfish]
-    print('exp', exp, 'lastfish', lastfish)
+    #print('exp', exp, 'lastfish', lastfish)
     
     moveFish()
-    print('fish moved')
-    [print(*el) for el in sea]
-    print()
+    #print('fish moved')
+    #[print(*el) for el in sea]
+    #print()
     
 
     ny= y
     nx= x
     canMove= False
-    for _ in r(3):
+    for _ in r(3): # 3^16 3^8 9^4 10^4 10^6 
         ny+= DY[head]
         nx+= DX[head]
         if sea[ny][nx]<0: break
         if sea[ny][nx]>0:
-            print(f'cy cx {y} {x}-> ny nx {ny} {nx}')
-            print(f'before meal')
-            [print(*el) for el in sea]
-            prv= [[sea[i][j] for j in r(6)] for i in r(6)] # most efficient way?
-            prv_fish= [fish[i] for i in r(17)]
-            prv_fishhead= [fishhead[i] for i in range(17)]
+            #print(f'cy cx {y} {x}-> ny nx {ny} {nx}')
+            #print(f'before meal')
+            #[print(*el) for el in sea]
+            #prv= [[sea[i][j] for j in r(6)] for i in r(6)] # most efficient way?
+            #prv_fish= [fish[i] for i in r(17)]
+            #prv_fishhead= [fishhead[i] for i in range(17)]
+
+
+            
+            c= sea[ny][nx]
+            
 
             canMove= True
             sea[y][x]=0
             eaten= sea[ny][nx]
+            d=fish[eaten]
             sea[ny][nx]=-2
             fish[eaten]=(0,0)
-            print('eat')
-            [print(*el) for el in sea]
-            print()
+            #print('eat')
+            #[print(*el) for el in sea]
+            #print()
+           
             dfs(ny, nx, exp+eaten, eaten)
-            sea= [[prv[i][j] for j in r(6)] for i in r(6)]
-            fish= [prv_fish[i] for i in r(17)]
-            fishhead= [prv_fishhead[i] for i in range(17)]
+            
+            
+            sea[y][x]= -2
+            sea[ny][nx]= c
+            fish[eaten]=d
+
+
+            #sea= [[prv[i][j] for j in r(6)] for i in r(6)]
+            #fish= [prv_fish[i] for i in r(17)]
+            #fishhead= [prv_fishhead[i] for i in range(17)]
     if not canMove:
         [print(*el) for el in sea]
         print(exp)

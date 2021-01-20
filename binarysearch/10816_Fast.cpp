@@ -30,11 +30,11 @@ int main()
         a=0;
         b=n-1;
         left=-1;
-        while(a<=b)
+        while(a<=b) // below x
         {
             mid=(a+b)>>1;
             if(nums[mid]<x){
-                left=mid;
+                left=mid; // new spot detected
                 a=mid+1;
             }
             else b=mid-1;
@@ -42,7 +42,7 @@ int main()
         a=0;
         b=n-1;
         right=-1;
-        while(a<=b)
+        while(a<=b) // last x or below
         {
             mid=(a+b)>>1;
             if(nums[mid]<=x){
