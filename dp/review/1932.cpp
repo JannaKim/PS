@@ -12,12 +12,12 @@ int main()
     FOR(i,n){
         int tmp;
         FOR(j,i){
-            scanf("%d",&tmp);
+            scanf("%d",&tmp); //prv dp: in dp[][i-1)%2], cur dp: in dp[][i%2] 
             dp[j][i%2]= max(dp[j-1][(i-1)%2]+ tmp, dp[j][(i-1)%2]+ tmp);
         }
     }
     int mx=0;
-    FOR(i,n) mx=max(mx,dp[i][n%2]);
+    FOR(i,n) mx=max(mx,dp[i][n%2]); //last one= lastly programmed= n%2
     printf("%d",mx);
 
 }
