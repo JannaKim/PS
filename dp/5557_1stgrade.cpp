@@ -28,6 +28,7 @@ int main()
                 }
             }
         }
+        
         for(int j=0;j<=21;++j){ //sum
             if(dp_plus[j]!=0 && dp_minus[j]==0) dp_total[j]=dp_plus[j];
             else if (dp_plus[j]==0 && dp_minus[j]!=0) dp_total[j]=dp_minus[j];
