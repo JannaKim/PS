@@ -22,17 +22,30 @@ if flag:
     expression.append(')')
 
 
+
 # erase invalid zero
+
+firstoperand=0
+while len(expression)>0 and ord(expression[0])>45:
+        firstoperand= firstoperand*10+int(expression.pop(0))
+expression.insert(0,str(firstoperand))
+
 n= len(expression)
-i=0
+i=1
+#print(expression)
 while True:
-    if i==n-1: break
-    if expression[i]=='0' and ord(expression[i+1])>45:
-        expression.pop(i)
+    if i>=n-1: break
+    if ord(expression[i])<=45 and expression[i+1]=='0':
+        expression.pop(i+1)
         n-=1
         i-=1
     i+=1
 
-print(''.join(expression))
+
+#print(''.join(expression))
 print(eval(''.join(expression)))
     
+
+# 105+51
+
+# 0005+ 1005+ 05

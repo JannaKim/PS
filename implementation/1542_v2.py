@@ -30,13 +30,22 @@ for el in s:
 #print(a,b)
 if a:
     q.append(str(int(a)+b))
+
 #print(q)
+
+
+i=1
+corner=0
+while len(q)>0 and len(q[0])==1 and ord(q[0])>45:
+    corner= 10*corner+ int(q.pop(0))
+if corner: # 처음에 스트링이었으면 코너가 필요없었음
+    q.insert(0,str(corner))
 n= len(q)
-i=0
+#print(q)
 while True:
-    if i==n-1: break
-    if q[i]=='0' and ord(q[i+1])>45:
-        q.pop(i)
+    if i>=n-1: break # 여기 조심. 첫길이 1이었을대 생각.
+    if len(q[i])==1 and ord(q[i])<=45 and q[i+1]=='0':
+        q.pop(i+1)
         n-=1
         i-=1
     i+=1
@@ -44,9 +53,12 @@ while True:
 #print(''.join(q))
 print(eval(''.join(q)))
 
-
+#반례: 105+51-105
+# 10+100-05
 
 '''
+
+
 10-1-3+5
 
 1

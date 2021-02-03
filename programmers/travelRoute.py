@@ -1,3 +1,4 @@
+import time
 import sys; sys.setrecursionlimit(1000000)
 unused=0 # num of tickets
 def solution(tickets):
@@ -13,6 +14,7 @@ def solution(tickets):
 
     # match airports with 0~n-1, alphabetically
     decode={} # num -> airports
+    
     code={} # airports -> num
 
     for i, el in enumerate(enum):
@@ -42,9 +44,11 @@ def solution(tickets):
     
     ans=[]
     def dfs(v):
+
+        #time.sleep(0.1)
         global unused
         #print(decode[v])
-        #[print(*el) for el in used]
+        #[print(*el) for el in remain]
         ans.append(decode[v])
         #print(ans, unused)
         
@@ -62,9 +66,9 @@ def solution(tickets):
                     break
                 remain[v][v2]+=1 # wrong way: backtrack
                 unused+=1
-                if mx>0:
-                    edge[v].append(v2) # append current ticket at the very back
-                    mx-=1
+                #if mx>0:
+                #    edge[v].append(v2) # append current ticket at the very back
+                #    mx-=1
 
         if ansFound: return True
         ans.pop()
@@ -72,7 +76,7 @@ def solution(tickets):
 
 
 
-    dfs(code['ICN'])
+    dfs(code['A'])
     if unused!=0:
         for i in range(ports):
             for j in range(ports):
@@ -94,7 +98,8 @@ def solution(tickets):
 
 #print(solution( [["ICN", "A"], ["A", "C"], ["A", "D"], ["D", "B"], ["B", "A"]]))
 
-print(solution([["ICN","A"],["A","B"],["B","A"],["A","ICN"],["ICN","A"]] ))
+#print(solution([["ICN","A"],["A","B"],["B","A"],["A","ICN"],["ICN","A"]] ))
 
+print(solution([["A","B"], ["A","B"], ["A","E"], ["B","C"], ["B","D"], ["B","D"], ["D","A"], ["D","B"], ["E","F"], ["F","A"]]))
 #print(solution([["ICN", "SFO"], ["ICN", "ATL"], ["SFO", "ATL"], ["ATL", "ICN"], ["ATL", "SFO"]]))
 #[ICN, ATL, ICN, SFO, ATL, SFO]
