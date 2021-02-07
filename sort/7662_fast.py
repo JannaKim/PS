@@ -31,7 +31,7 @@ def solve():
                         heappop(maxq)
                         pd.pop(v)
                 else:
-                    minq.sort()
+                    minq.sort() #logn 500000 ~ 1
                     v=minq[-1]
                     if pd[v] > 1:
                         pd[v] -= 1
