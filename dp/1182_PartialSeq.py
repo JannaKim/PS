@@ -51,4 +51,3 @@ if s<0:
     print(NP[n-1][-s])
 else:
     print(DP[n-1][s])
-

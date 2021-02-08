@@ -1,16 +1,24 @@
+import time
 for _ in range(int(input())):
-    m, n, x, y= [int(i)+1 for i in input().split()]
-    a, b= 1 ,1
-    cnt=1
-    while a<m-1 or b<n-1:
-        #print(a, b)
-        if a==x and b==y:
-            print(cnt-1)
-            exit()
-        cnt+=1
-        a+=1
-        b+=1
-        a, b= max(a%m,1), max(b%n,1)
-        
+    m, n, x, y= [int(i) for i in input().split()]
+    x-=1
+    y-=1
 
-    print(-1)
+    if n<m:
+        m, n= n, m
+        x, y= y, x
+    # m<n
+    b= x
+    cnt=x+1
+    flag= False
+    for _ in range(n):
+        if b==y:
+            flag=True
+            print(cnt)
+            break
+        b = (b+m)%n  ##########
+        cnt+=m
+        
+    if not flag:
+        print(-1)
+#11 13 6 5
