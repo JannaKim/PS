@@ -9,4 +9,3 @@ for i in range(lb-la+1):
             cnt+=1
     ans= min(ans, cnt)
 print(ans)
-
