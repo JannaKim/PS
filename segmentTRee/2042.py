@@ -1,58 +1,72 @@
-from math import *
-N, M, K = map(int, input().split())
-L = [] 
-for _ in range(N):
-    L.append(int(input()))
+from math import log
+n, m, k= map(int, input().split())
 
-A = []
-B = sum(L[1:]) #N
-INFO = [[] for _ in range(N+1)] #N
-#for i in range(1,N+1): #N
+tmp= int(log(n,2))
+
+if 2**tmp!=n:
+    tmp+=1
+
+sz= 2**tmp
+seg= [0]*2**(tmp+1)
+
+for i in range(n):
+    inp=int(input())
+    seg[sz+i]=inp
+
+def heapify_up(cur):
+    if cur>=sz:
+        return seg[cur]
+    seg[cur]= heapify_up(2*cur)+heapify_up(2*cur+1)
+    return seg[cur]
+
+heapify_up(1)
+
+#print(seg)
+
+def update(k,minus):
+    if k==0:
+        return
+    seg[k]-=minus
+    update(k//2,minus)
 
 
-#node = [0]*2**(len(bin(N)[2:])+1) # 2^n~2^n+1
-size = 2**(int(log(N,2))+2)+1
-node = [0]*size
+def find(node, lo, hi, st, ed):
+    if st>ed or ed < lo or st > hi:
+        return 0
+    elif st==ed or (lo <= st and hi >= ed):
+        return seg[node]
+    print(node, lo, hi, st, ed)
+    mid= (st+ed)//2
+    a= find(node * 2, lo, hi, st,mid)
+    b= find(node * 2 + 1, lo, hi, mid+1, ed)
+    return a+b
+    
 
-
-
-def tree(n,start, end):
-    print(n,start, end)
-    global node
-    if start==end:
-        node[n] = L[start]
-        return node[n]
-    node[n] = tree(2*n,start,(start+end)//2) + tree(2*n+1, (start+end)//2+1, end)
-    return node[n]
-tree(1,0,N-1) # 0번째 값은 0~n-1의 부모노드다
-print(node)
-
-
-for _ in range(M+K):
-    a, b, c = map(int, input().split())
-    '''
+for _ in range(m+k):
+    a, b, c= map(int, input().split())
+    b -= 1
     if a==1:
-        renew(b,c)
-    if a==2:
-        summ(b, c, 1, N)
-    '''
-'''   
-def renew(a,b):
-
-def summ(start, end, a, b):
+        delta= seg[sz + b]-c
+        update(sz + b, delta)
+    elif a==2:
+        print(find(1, b, c - 1, 0, n - 1))
 
 '''
-
+if st<lo or ed<hi:
+    print(f'{st}<{lo} or {ed}<{hi}')
+    return (0,1e9)
+'''
 
 '''
-5 2 2
-1
-2
-3
-4
+10 4
+75
+30
+100
+38
+50
+51
+52
+20
+81
 5
-1 3 6
-2 2 5
-1 5 2
-2 3 5 
 '''

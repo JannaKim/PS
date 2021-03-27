@@ -31,8 +31,6 @@ while True:
     
     
         
-    
-
 
 
 #print(seq)

@@ -21,3 +21,16 @@ if 2**r<n:
     r+=1
     
 print(match(1, 2**r, r))
+'''
+import sys
+input=sys.stdin.readline
+n, kim, lim = map(int, input().split())
+cnt = 0
+
+while(kim!=lim):
+    kim = kim - kim//2
+    lim = lim - lim//2
+    cnt += 1
+    
+print(cnt)
+'''

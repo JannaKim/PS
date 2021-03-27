@@ -18,9 +18,9 @@ def topdown(lo, hi):
     left= topdown(lo, mid)
     right= topdown(mid+1,hi)
     if left>right:
-        dp[lo][hi]= topdown(lo,mid)+ max(L[mid+1:hi+1])
+        dp[lo][hi]= left+ max(L[mid+1:hi+1])
     else:
-        dp[lo][hi]= max(L[lo:mid+1])+ topdown(mid+1,hi)
+        dp[lo][hi]= max(L[lo:mid+1])+ right
     return dp[lo][hi]
 
 print(topdown(0,n-1))

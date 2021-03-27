@@ -15,18 +15,13 @@ def record(blueray):
             k=blueray-el
     return cnt
 
-lo=0
+lo=max(L)
 hi=mx
 while lo<hi:
     mid= (lo+hi)//2
-    if record(mid)<m:
-        hi= mid-1
+    if record(mid)<=m:
+        hi= mid
+        ans=mid
     elif record(mid)>m:
-        lo= mid+1
-    else:
-        hi=mid
-
-if record(lo)==m:
-    print(lo)
-else:
-    print(hi)
+        lo= mid + 1
+print(ans)

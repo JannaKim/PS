@@ -39,7 +39,7 @@ def spread():
             l, m= v[i]
             experi[l][m]=1
     time=0
-    if isFilled(experi): # filled at this instance!
+    if isFilled(experi): # filled right at this moment!
         return time
     #print(q)
     while q:

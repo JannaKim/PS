@@ -2,9 +2,6 @@
 n, k= map(int, input().split())
 
 
-
-
-
 def f(remain, s, As, Bs, pair):
     if pair and not remain:
         return
@@ -16,7 +13,6 @@ def f(remain, s, As, Bs, pair):
     f(remain-1,'B'+s, As, Bs+1, pair)
     f(remain-1,s+'B', As, Bs+1, pair+As)
     f(remain-1,s+'A', As, Bs+1, pair)
-
 
 
 f(n-1,'B',0,1,0)

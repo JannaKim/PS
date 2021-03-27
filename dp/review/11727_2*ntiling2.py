@@ -1,5 +1,5 @@
 a, b= 3, 1
-n= int(input())
+#n= int(input())
 if n==1:
     print(b)
 elif n==2:
@@ -8,3 +8,9 @@ else:
     for i in range(3,n+1):
         a, b= (a+2*b)%10007, a
     print(a)
+
+def f(n):
+    a=0
+    return a=n
+
+print(f(2))
