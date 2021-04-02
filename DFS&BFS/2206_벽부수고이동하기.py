@@ -19,11 +19,12 @@ q.append((1, 1, 1, False))
 while q:
     d, y, x, crashed= q.popleft()
     if (y, x)== (n, m):
-        ans= min(ans, d)
+        print(d)
+        exit()
     
     for dy, dx in zip(Dy, Dx):
         ny= y+dy
-        nx= x+dx
+        nx= x+dx    
         if crashed:
             if chk2[ny][nx] or mp[ny][nx]<0:
                 continue
@@ -42,7 +43,7 @@ while q:
                 q.append((d+1, ny, nx, crashed))
 
 
-print([ans, -1][ans==1e9])
+print(-1)
 
 
 '''
@@ -53,4 +54,9 @@ print([ans, -1][ans==1e9])
 1101
 1111
 1100
+
+
+vi example.c
+
+테트로미노 
 '''
