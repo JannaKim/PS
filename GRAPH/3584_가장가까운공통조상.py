@@ -1,42 +1,65 @@
 import sys; input= lambda: sys.stdin.readline().rstrip()
-sys.setrecursionlimit(10000)
+from heapq import heappop, heappush
 for _ in range(int(input())):
     n= int(input())
-    edge=[0]*(n+1)
-    down=[[] for _ in range(n+1)]
-    indegree= [0]*(n+1)
-    deg= [0]*(n+1)
+    edge=[[] for _ in range(n+1)]
+    up=[[] for _ in range(n+1)]
+    indegree= [True]*(n+1)
     for _ in range(n-1):
         a, b= map(int, input().split())
-        edge[b]=a
-        down[a].append(b)
-        indegree[b]+=1
+        edge[a].append(b)
+        up[b].append(a)
+        indegree[b]=False
 
-    def dfs(v, d):
-        for v2 in down[v]:
-            deg[v2]=d
-            dfs(v2, d+1)
+    # 둘을 이은다음에 bfs, 만나면 그중에 공통조상 있다.
 
+    def fill_story(v,floor):
+        for v2 in edge[v]:
+            story[v2]= min(story[v2], floor+1)
+            fill_story(v2,floor+1)
+
+
+    story= [1e9]*(n+1)
     for i in range(1,n+1):
-        if not indegree[i]:
-            dfs(i,1)
+        if indegree[i]:
+            indegree=[]
+            story[i]=0
+            fill_story(i,0)
+            edge=[]
             break
 
-    def up(v,cnt):
-        if not cnt:
-            return v
-        return up(edge[v],cnt-1)
+    chk= [False]*(n+1)
+    a, b= map(int, input().split())
+    q=[]
+    chk[a]=True
+    chk[b]=True
+    heappush(q, (-story[a], a))
+    heappush(q, (-story[b], b))
 
+    while q:
+        stry, v= heappop(q)
+        #print(-stry, v)
+        found=False
+        for v2 in up[v]:
+            #print(v, '->', v2, -stry)
+            if not chk[v2]:
+                chk[v2]=True
+                heappush(q, (-story[v2], v2))
+            else:
+                found=True
+                break
+        if found:
+            q=[]
+            break
     
-    a, b=map(int, input().split())
-    A, B= a ,b
-    print(deg)
-    if deg[a]>deg[b]:
-        B= up(b, deg[a]-deg[b])
-    elif deg[a]<deg[b]:
-        B= up(a, deg[b]-deg[a])
-    while A!=B:
-        A= up(A, 1)
-        B= up(B, 1)
-    print(A)
+    ans=-1
+    mn=1e9
+    #print(chk)
+    #print(story)
+    for i in range(1,n+1):
+        if chk[i] and story[i]<mn:
+            ans=i
+            mn=story[i]
+    print(ans)
+
 
