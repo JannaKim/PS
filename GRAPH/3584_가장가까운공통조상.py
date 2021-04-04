@@ -50,6 +50,7 @@ for _ in range(int(input())):
                 break
         if found:
             q=[]
+            up=[]
             break
     
     ans=-1
@@ -61,5 +62,3 @@ for _ in range(int(input())):
             ans=i
             mn=story[i]
     print(ans)
-
-
