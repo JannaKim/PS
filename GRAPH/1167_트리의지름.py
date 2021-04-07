@@ -1,33 +1,36 @@
 import sys; input= lambda: sys.stdin.readline().rstrip()
+from collections import deque
 n= int(input())
 edge=[[] for _ in range(n+1)]
-indegree= [0]*(n+1)
+deg= [0]*(n+1)
 
-for i in range(1,n+1):
-    L= [*map(int, input().split())][1:]
-    Len= len(L)
-    for j in range(0,Len-1,2):
-        if not j%2:
-                edge[i].append((L[j], L[j+1]))
-                indegree[L[j]]+=1
-                indegree[i]+=1
+for v in range(1,n+1):
+    L=[*map(int, input().split())]
+    for i in range(1,n*2+1,2):
+        if L[i]==-1:
+            break
+        edge[v].append((L[i], L[i+1]))
+        deg[v]+=1
+        deg[L[i]]+=1
+
 ans=0
-chk= [False]*(n+1)
-def dfs(v,dist):
-    flag=False
-    for v2,d in edge[v]:
-        if not chk[v2]:
-            flag=True
-            chk[v2]=True
-            dfs(v2,dist+d)
-            chk[v2]=False
-    if not flag:
-        global ans
-        ans= max(ans, dist)
-#print(indegree)
 for i in range(1,n+1):
-    if indegree[i]==2:
-        chk[i]=True
-        dfs(i,0)
-        chk[i]=False
+    if deg[i]==2:
+        q=deque()
+        q.append((i,0,0))
+        #print(i,'->')
+        while q:
+            v, prv, d= q.popleft()
+            for v2, d2 in edge[v]:
+                if v2!=prv and deg[v2]!=2:
+                    q.append((v2,v,d+d2))
+                elif v2!=prv and deg[v2]==2:
+                    ans= max(v,d+d2)
 print(ans)
+
+'''
+cmd t
+cmd 1
+pwd
+cmd space
+'''
