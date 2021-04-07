@@ -34,3 +34,5 @@ def clean(y, x, d):
         clean(ny, nx, d)
 floor[r][c]=2
 clean(r, c, d)
+
+# bfs 로 해보기

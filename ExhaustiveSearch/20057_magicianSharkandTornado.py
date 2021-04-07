@@ -32,7 +32,6 @@ def swirl(y, x):
         nx= x+dx
         s= int(sand*p)
         ori-=s ################################ 내림해서 없어졌으면 ori가 가져감
-        
         if nx<0 or nx>=n or ny<0 or ny>=n:   
             ans+=s
         else:
