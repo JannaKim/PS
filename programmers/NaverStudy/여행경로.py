@@ -1,3 +1,4 @@
+# 1: 1h 10min
 import sys; input= lambda: sys.stdin.readline().rstrip()
 answer=[]
 cnt=0
