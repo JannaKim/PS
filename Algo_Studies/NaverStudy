@@ -1,0 +1,8 @@
+0412)
+union find:
+    p[v]= find(p[v])
+make tree:
+    undone
+
+prim algorithm?
+

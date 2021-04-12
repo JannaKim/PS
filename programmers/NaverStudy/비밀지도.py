@@ -6,7 +6,7 @@ def solution(n, arr1, arr2):
         M= max(M, len(bin(a)[2:]))
         M= max(M, len(bin(b)[2:]))
     for a, b in zip(arr1, arr2):
-        a= bin(a)[2:]dsz
+        a= bin(a)[2:]
         b= bin(b)[2:]
         la= len(a)
         lb= len(b)

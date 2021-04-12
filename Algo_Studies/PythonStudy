@@ -1,0 +1,9 @@
+0411)
+
+list(map(list, zip(*data)))
+
+연산자 끼워넣기 바텀업
+
+메뉴리뉴얼 셋 쓰면 중복찾기 안할 수 있다.
+
+def change(su, cnt=0):

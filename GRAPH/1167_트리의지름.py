@@ -1,14 +1,13 @@
 import sys; input= lambda: sys.stdin.readline().rstrip()
-sys.setrecursionlimit(200000)
+sys.setrecursionlimit(250000)
 n= int(input())
-edge=[[] for _ in range(n+1)]
-
-for v in range(1,n+1):
-    L=[*map(int, input().split())]
-    for i in range(1,n*2+1,2):
-        if L[i]==-1:
+edge= [[] for _ in range(n+1)]
+for _ in range(n):
+    line= [*map(int, input().split())]
+    for j in range(1,n*2,2):
+        if line[j]==-1:
             break
-        edge[v].append((L[i], L[i+1]))
+        edge[line[0]].append((line[j], line[j+1]))
 
 
 dp= [0]*(n+1) # 자기 부터 아래로 뻗는 가장 긴 길이
