@@ -1,5 +1,5 @@
 import sys; input= lambda: sys.stdin.readline().rstrip()
-sys.setrecursionlimit(1000000)
+sys.setrecursionlimit(100000)
 n, m= map(int, input().split())
 parent= list(range(n+1))
 def find(v):

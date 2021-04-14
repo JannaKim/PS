@@ -28,7 +28,7 @@ def solution(nodeinfo):
     preList = []
     
     fix(root,postList,preList)
-    print(postList, preList)
+    #print(postList, preList)
     answer.append(list(map(lambda x: nodeinfo.index(x)+1 ,postList)))
     answer.append(list(map(lambda x: nodeinfo.index(x)+1 ,preList)))
     return answer

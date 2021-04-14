@@ -60,6 +60,7 @@ def solution(tickets):
         if not flag:
             return False
     #print(cnt)
+    ##### sort 한번만
     dfs(incode['ICN'], len(tickets),[incode['ICN']])
     return answer
 

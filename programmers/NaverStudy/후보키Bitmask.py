@@ -1,13 +1,11 @@
 def solution(relation):
     n= len(relation)
     m= len(relation[0])
-
     ans=[]
-    Len=m
     for i in range(1,2**m):
         
         ths= bin(i)[2:]
-        combi= '0'*(Len-len(ths))+ths
+        combi= '0'*(m-len(ths))+ths
         ls={}
         flag=True
         for j in range(n): # 인원별로 돌림
@@ -33,3 +31,15 @@ def solution(relation):
     return len(ans)
 
 print(solution([["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]]))
+
+'''
+1
+10
+11
+
+100
+
+111
+101
+110
+'''
