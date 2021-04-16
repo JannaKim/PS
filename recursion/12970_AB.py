@@ -24,3 +24,4 @@ ans=['B']*n
 for el in As:
     ans[el]='A' 
 print(''.join(ans))
+
