@@ -8,7 +8,10 @@ def backtrack(t):
         global ans
         ans+=1
         return
-
+    print(t)
+    [print(*el) for el in mp]
+    
+    time.sleep(0.5)
     i, j= ls[t]
     chk=[False]*10
     for r in range(3):

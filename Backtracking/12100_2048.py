@@ -1,4 +1,4 @@
-# WA why? ? wheteullyoyo?.?
+# WA 
 import sys; input= lambda: sys.stdin.readline().rstrip()
 sys.setrecursionlimit(100000)
 import time
@@ -9,31 +9,31 @@ for i in range(n):
         for j in range(n):
             ans= max(ans, B[i][j])
 ans= -ans
-def rec(stage,B):
-
+def rec(stage,B):    
     for i in range(4):
         if stage<=4:
             rec(stage+1,move(i,B))
         else:
             move(i,B)
 
+
 def move(d,L):
-    #time.sleep(1)
+    time.sleep(1)
     global n,ans
     # d별로 회전
     R=[]
     #0
     if d==0:
-        R=[el for el in L]
+        R=[el[:] for el in L][:] ######### 문제2
     #90
     elif d==1:
-        R= list(map(list, zip(*[el[::-1] for el in L])))
+        R= list(map(list, zip(*[el[::-1] for el in L])))[:]
     #180
     elif d==2:
-        R= [el[::-1] for el in L[::-1]]
+        R= [el[::-1] for el in L[::-1]][:]
     #270
     elif d==3:
-        R= list(map(list, zip(*[el for el in L[::-1]])))
+        R= list(map(list, zip(*[el[:] for el in L[::-1]])))[:]
 
     
     print('rotated',d)
@@ -63,6 +63,7 @@ def move(d,L):
                 if find<n:
                     R[i][j], R[i][find]= R[i][find], R[i][j]
             ans= min(ans,R[i][j])
+            R[i][j]= abs(R[i][j]) ###### 1
     print('converged')
     [print(*el) for el in R]
     print()

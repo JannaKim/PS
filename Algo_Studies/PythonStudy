@@ -1,4 +1,5 @@
 0411)
+* SWE 최대상금 문제 좋았음
 
 list(map(list, zip(*data)))
 
@@ -7,3 +8,8 @@ list(map(list, zip(*data)))
 메뉴리뉴얼 셋 쓰면 중복찾기 안할 수 있다.
 
 def change(su, cnt=0):
+
+
+0418)
+* leetcode 39 문제 좋았음
+전역변수 안쓰면 백트래킹이 안되는데?
