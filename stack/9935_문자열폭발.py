@@ -27,7 +27,3 @@ for i in range(n):
             stk-=m
 ans=''.join(stc)
 print([ans,'FRULA'][not ans])
-
-
-        
-

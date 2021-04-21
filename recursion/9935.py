@@ -51,20 +51,3 @@ while flag:
     candi=nxt[:]
 ans=''.join([(s[i] if remain[i] else '') for i in range(n)])
 print([ans,'FRULA'][not ans])
-# 10: z
-
-'''
-
-1 2 3 4 5
-aabcbcabcaa
-bca
-
-
-aaabaabbbababb
-ab
-
-bbanazanbannn
-ban
-zipazip
-z
-'''

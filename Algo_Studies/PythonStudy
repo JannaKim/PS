@@ -13,3 +13,7 @@ def change(su, cnt=0):
 0418)
 * leetcode 39 문제 좋았음
 전역변수 안쓰면 백트래킹이 안되는데?
+
+exe = [left,right,up,down]
+        exe[j]()
+

@@ -7,9 +7,7 @@ postorder= [*map(int, input().split())]
 ans=[]
 def rec(lo, hi, k):
     #print(lo, hi, k)
-
     if inorder[lo]==k:
-        
         if k!=inorder[hi]:
             if postorder:
                 ths=postorder.pop()
