@@ -1,40 +1,26 @@
 import sys; input= lambda: sys.stdin.readline().rstrip()
 sys.setrecursionlimit(1000000)
+from heapq import heappop, heappush
 n= int(input())
 edge= [[] for _ in range(n+1)]
+indegree= [[0,i] for i in range(n+1)]
 for _ in range(n-1):
     u, v= map(int, input().split())
     edge[u].append(v)
     edge[v].append(u)
-
-'''
-d=0
-start=0
-def travel(v,v1,depth):
-    flag=False
+    indegree[u][0]-=1
+    indegree[v][0]-=1
+q=[]
+[heappush(q,indegree[i]) for i in range(1,n+1)]
+cnt=0
+while q:
+    deg, v= heappop(q)
+    if indegree[v][0]!=deg:
+        heappush(q,indegree[v])
+        continue
+    if not deg:break
+    cnt+=1
     for v2 in edge[v]:
-        if v1==v2:
-            continue
-        flag=True
-        travel(v2,v,depth+1)
-    if not flag:
-        global d,start
-        if d<depth:
-            d=depth
-            start=v
-travel(1,0,0)
-'''
-def dfs(v,v1,switch):
-    tmp=0
-    if switch:
-        tmp+=1
-    for v2 in edge[v]:
-        if v1==v2:
-            continue
-        tmp+=dfs(v2,v,not switch)
-    return tmp
-#print(start)
-ox= dfs(1,0,True)
+        indegree[v2][0]+=1
 
-
-print(min(ox,n-ox))
+print(cnt)
