@@ -6,6 +6,7 @@ def solution(w,h):
             return gcd(b,a%b)
         if b>a:
             return gcd(a,b%a)
+            
     GCD = gcd(w,h)
     y= w//GCD
     x = h//GCD

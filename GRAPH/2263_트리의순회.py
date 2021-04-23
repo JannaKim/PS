@@ -25,6 +25,9 @@ def rec(lo, hi, k):
 
 rec(0,n-1,postorder.pop())
 print(*ans[::-1])
+'''
+'''
+
 
 '''
 class Tree:

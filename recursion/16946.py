@@ -1,6 +1,6 @@
 # 77% RTE
 import sys; input= lambda: sys.stdin.readline().rstrip()
-sys.setrecursionlimit(200000)
+sys.setrecursionlimit(300000)
 n, m= map(int, input().split())
 mp=[[*map(int,list(input()))] for _ in range(n)] 
 ans=[el[:] for el in mp]
