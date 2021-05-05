@@ -1,4 +1,5 @@
 import sys; input= lambda: sys.stdin.readline().rstrip()
+sys.setrecursionlimit(100000) 
 n= int(input())
 edge= [[] for _ in range(n+1)]
 
