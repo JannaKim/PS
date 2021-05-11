@@ -10,6 +10,8 @@ def solution(cacheSize, cities):
         return 5*len(cities)
     elif cacheSize==1:
         for a, b in zip(cities, cities[1:]):
+            a=a.lower()
+            b=b.lower()
             if a==b:
                 ans+=1
             else:
