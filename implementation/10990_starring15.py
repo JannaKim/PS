@@ -17,7 +17,7 @@ for i in range(n):
         if mp[i][j]=='*':
             ends[i]=j
             break
-print(ends)
+
 for i in range(n):
     for j in range(n*2):
         print(mp[i][j],end='')

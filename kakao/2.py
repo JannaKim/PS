@@ -1,22 +1,22 @@
 def solution(places):
     ans=[]
     for room in places:
-        #print('o')
+
         flag=False
         for i in range(5):
             for j in range(4):
-                #print(i,j, ' ', j, i)
+
                 if room[i][j]=='P' and room[i][j+1]=='P':
                     flag=True
                     
                     break
                 if room[j][i]=='P' and room[j+1][i]=='P':
-                    #print(i,j)
+
                     flag=True
                     break
         for i in range(3):
             for j in range(3):
-                #print(i,j, ' ', j, i)
+
                 if room[i][j]=='P' and room[i][j+1]=='O' and room[i][j+2]=='P' :
                     flag=True
                     
@@ -24,15 +24,14 @@ def solution(places):
                 if room[i][j]=='P' and room[i+1][j]=='O' and room[i+2][j]=='P' :
                     flag=True
                     break
-        #print('?')
         for i in range(4):
             for j in range(4):
                 if room[i][j]=='P' and room[i][j+1]=='O' and room[i+1][j+1]=='P':
-                    #print(i,j)
+
                     flag=True
                     break
                 if room[i][j]=='O' and room[i][j+1]=='P' and room[i+1][j]=='P':
-                    #print(i,j)
+
                     flag=True
                     break
                 if room[i][j]=='P' and room[i+1][j]=='O' and room[i+1][j+1]=='P':

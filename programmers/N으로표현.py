@@ -11,8 +11,8 @@ def solution(N, number):
         for i in range(5):
             s+=1*10**i
         dp[s]=2
-    print(dp)
-    dp[number]=0   
+    print(dp) 
+    for i in range(1,)
     #for i in range(1)
     
     return [ans, -1][ans==1e9]

@@ -5,9 +5,9 @@ cleaner=[[0]*2 for _ in range(2)]
 up=[]
 down=[]
 
-for i in range(c):
+for i in range(r): # 문제 7: 세상에
     if mp[i][0]==-1:
-        cleaner[0][0]=i
+        cleaner[0][0]=i # 문제 6: 여기가 문제
         cleaner[1][0]=i+1
         break
 
@@ -46,7 +46,6 @@ Dx=[1,-1,0,0]
 
 #print(up)
 #print(down)
-print(-2//5)
 while t:
     t-=1
     dust=[]

@@ -48,3 +48,5 @@ def solution(n, t, m, timetable):
     return answer
 
 print(solution(2,10,2,["09:10", "09:09", "08:00"]))
+
+
