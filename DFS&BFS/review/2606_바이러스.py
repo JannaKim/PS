@@ -18,6 +18,7 @@ for _ in range(m):
 cnt=0
 for i in range(2,n+1):
     find(i)
+    print(parent)
     if parent[i]==parent[1]:
         cnt+=1
 print(cnt)

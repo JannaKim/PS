@@ -14,9 +14,9 @@ while True:
     accum= [[1e9]*n for _ in range(n)]
     accum[0][0]=mp[0][0]
     q=[]
-    heappush(q,(0,0,mp[0][0]))
+    heappush(q,(mp[0][0],0,0))
     while q:
-        y, x, c= heappop(q)
+        c, y, x= heappop(q)
         if accum[y][x]<c:
             continue
         for dy, dx in zip(Dy, Dx):
@@ -25,6 +25,5 @@ while True:
             if 0<=ny<n and 0<=nx<n:
                 if c+mp[ny][nx]<accum[ny][nx]:
                     accum[ny][nx]= c+mp[ny][nx]
-                    heappush(q,(ny, nx, accum[ny][nx]))
+                    heappush(q,(accum[ny][nx], ny, nx))
     print(f'Problem {cnt}: {accum[n-1][n-1]}')
-

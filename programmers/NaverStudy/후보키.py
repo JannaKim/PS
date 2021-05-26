@@ -21,7 +21,7 @@ def solution(relation):
     for i in range(m):
         remain.append([dic[el[i]] for el in relation]+[i])
 
-    #print(remain)
+    print(remain)
     com={}
     for i in range(1,9):
         if len(remain)<i:
@@ -41,7 +41,7 @@ def solution(relation):
                 sm=1
                 tmp=[]
                 for idx, el in enumerate(b):
-                    #print(el)
+                    print(el)
                     sm*=el
                     tmp.append(el)
                 #tmp.sort()
@@ -74,3 +74,5 @@ def solution(relation):
                     
 
     return len(com.keys())
+
+print(solution([["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]]))
