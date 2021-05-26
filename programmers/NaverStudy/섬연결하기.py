@@ -16,8 +16,6 @@ def solution(n, costs):
     global par
     par= list(range(n))
     ans = 0
-    
-
     costs.sort(key= lambda x:x[2])
 
     for a, b, c in costs:
