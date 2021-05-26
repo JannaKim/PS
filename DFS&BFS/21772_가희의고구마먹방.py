@@ -39,3 +39,13 @@ for i in range(r):
         if mp[i][j]=='G':
             print(bfs(i,j))
             exit()
+
+
+'''
+3 4 5
+....
+.#S#
+.SGS
+
+ans:3
+'''
