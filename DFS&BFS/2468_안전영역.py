@@ -1,5 +1,5 @@
 import sys; input= lambda: sys.stdin.readline().rstrip()
-sys.setrecursionlimit(15000)
+sys.setrecursionlimit(10001)
 n= int(input())
 mp=[[*map(int, input().split())] for _ in range(n)]
 Dy= [0,0,1,-1]
