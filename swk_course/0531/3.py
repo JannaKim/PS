@@ -1,4 +1,4 @@
-# 2500s,* 2500
+# 2500s,* (50+50)
 import sys; input= lambda: sys.stdin.readline().rstrip()
 from collections import deque
 r, c= map(int, input().split())
@@ -24,16 +24,15 @@ dp[st[0]][st[1]]=0
 wat=0
 while q:
     y, x, dur= q.popleft()
-    #print(y, x,dur-1,'\n')
     if (y,x)==ed:
             print(dur-1)
             #[print(*el) for el in dp]
             exit() ##
-    if wat<dur: # 다음시간에 물이 찰 예정인 칸으로 고슴도치는 이동할 수 없다.
+    if wat<dur: # '다음시간'에 물이 찰 예정인..
         wat=dur
         tmp= water[:]
         water=[]
-        for i, j in tmp: # 여기 y, x 쓰려했는데 겹치는데 왕규님은 이때 인덱스 뭘로 만드세요?
+        for i, j in tmp: # y, x 를 i,j로 받으려니 심적으로 불편하네요.. 왕규님은 이때 인덱스 뭘로 만드세요?
             for dy, dx in zip(Dy, Dx):
                 ny= i+dy
                 nx= j+dx
@@ -43,8 +42,6 @@ while q:
                     chk[ny][nx]= 1
                     water.append((ny,nx))
 
-    #[print(*el) for el in chk]
-    #print(water)
     for dy, dx in zip(Dy, Dx):
         ny= y+dy
         nx= x+dx
@@ -53,8 +50,8 @@ while q:
                 if dur<dp[ny][nx]:
                     dp[ny][nx]=dur
                     q.append((ny,nx,dur+1))
-#[print(*el) for el in dp]
-print('KAKTUS')
 
+print('KAKTUS')
+# 띄어쓰기는 다음부터
 
         
