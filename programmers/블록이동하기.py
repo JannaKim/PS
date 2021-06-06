@@ -6,19 +6,13 @@ B = []
 dp_verti = []
 dp_hori = []
 q = []
+
 def bound_chk(y , x):
     global r , c
     if 0 <= y < r and 0 <= x < c:
         return True
     return False
 
-'''
-    head:
-    xo
-
-    x
-    o
-''' 
 def rotate_down(step , y , x):
     global v , h , q , dp_hori , dp_verti
     if bound_chk(y + 1 , x - 1) and not B[y + 1][x - 1]:
@@ -133,7 +127,7 @@ def bfs():
     ''' 
     while q:
         step , direct , y , x = heappop(q)
-        print(step , direct , y , x)
+        print(y , x , direct , step)
         if y == r - 1 and x == c - 1:
             return step
 
@@ -155,5 +149,22 @@ def solution(b):
 
     return answer
 
-# 10000000
 print(solution([[0, 0, 0, 1, 1], [0, 0, 0, 1, 0], [0, 1, 0, 1, 1], [1, 1, 0, 0, 1], [0, 0, 0, 0, 0]]))
+
+'''
+
+꼬리 머리 둘다
+그래프이 정점 속성은
+좌표 방향 타임
+로봇 좌표 방향이 한 정점 
+
+xo
+
+
+xo
+
+x
+o
+
+두개 더한곳이 1
+'''
