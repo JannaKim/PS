@@ -42,5 +42,6 @@ while stc:
         tmp = findscc(v)
         if len(tmp) == 1 and v not in edge[v]:
             continue
+        
         scc.append(tmp)
 print(scc)

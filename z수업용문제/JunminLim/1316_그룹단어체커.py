@@ -24,7 +24,7 @@ for i in I:
                     a += 0
                 else:
                     a+=1
-                print(len(i),a)
+            
         if a == len( i ):
             ans += 1
 print(ans)

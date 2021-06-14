@@ -3,7 +3,6 @@ for el in sys.stdin:
     n=int(el)
     if n==0 or n== 1:
         print(1)
-        exit()
     else:
         dp=[]
         dp=[0]*(n+1)

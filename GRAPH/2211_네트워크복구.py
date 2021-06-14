@@ -32,7 +32,11 @@ for i in range(2 , n + 1):
     ans.add((1 , dp[i][1][0]))
     for a , b in zip(dp[i][1] , dp[i][1][1:]):
         ans.add( (a , b) )
-        
+
 print(len(ans))
 [print(*el) for el in ans]
 
+'''
+a -> b 가 최단경로면
+a -> c -> b일 때
+a - > c도 최단경로다

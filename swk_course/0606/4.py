@@ -1,6 +1,6 @@
-# X 보면 stc 에 넣음 , chk , 재귀는 안함
-# 같은 . 이면 chk 후 재귀
 
+
+from collections import deque
 Dy = [0 , 0 , 1 , -1]
 Dx = [1 , -1 , 0 , 0]
 
@@ -74,8 +74,35 @@ if siren:
 for i in range(r):
     for j in range(c):
         if mp[i][j] == '.':
+            chk[i][j] = 1
             melted.append( (i , j) )
 #print(melted)
+t = 0
+
+def bfs(Y , X):
+    q = deque()
+    q. append( (Y , X) )
+    stc = []
+    # X 보면 stc 에 넣음 , chk , 재귀는 안함
+    # 같은 . 이면 chk 후 재귀
+    while q:
+        y , x = popleft(q)
+
+        for dy, dx in zip(Dy , Dx):
+            ny = y + dy
+            nx = x + dx
+            if bound(ny , nx):
+                if chk[y][x] != chk[ny][nx] :
+                    if mp[ny][nx] == 'X':
+                        stc.append(ny, nx)
+                        
+
+while True:
+    t += 1
+    new = []
+    for y , x in melted:
+        new += bfs(y , x)
+
 '''
 def broadenSwan(y , x , intact, changed):
     for dy , dx in zip(Dy , Dx):

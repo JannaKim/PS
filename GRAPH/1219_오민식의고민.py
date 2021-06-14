@@ -1,11 +1,11 @@
 from heapq import heappop , heappush
 n , st , ed , m = map(int, input().split())
-edge = [ set() for _ in range(n)]
+edge = [ [] for _ in range(n)]
 for _ in range(m):
     a , b , c = map(int, input().split())
-    edge[a].add( (b , c) )
+    edge[a].append( (b , c) )
 P = [*map(int, input().split())]
-stc = [n - 1] * n
+stc = [2*n] * n
 dp = [-1e10] * n
 q = []
 heappush(q , (-P[st] , st))
@@ -14,44 +14,44 @@ cycle = [False] * n
 while q:
     p , v = heappop(q)
     p = -p
-    #print(v , p)
     if dp[v] > p:
-        continue
-
-    if cycle[v]:
-        for v2 , pri in edge[v]:
-            if not cycle[v2]:
-                cycle[v2] = True
-                heappush(q , (-1e10 , v2))
         continue
 
     for v2 , pri in edge[v]:
         if P[v2] - pri + p > dp[v2]:
+            dp[v2] = P[v2] - pri + p
             stc[v2] -=1
-            if stc[v2] < 0:
-                continue
             if not stc[v2]:
                 cycle[v2] = True
-                
-            dp[v2] = P[v2] - pri + p
+            if stc[v2] < 0:
+                continue
             #print(dp)
             heappush(q , (-dp[v2] , v2) )
 
-for _ in range(max(m , n)):
-    for v in range(n):
-        if cycle[v]:
-            for v2 , pri in edge[v]:
-                cycle[v2] = True
+chk = [False]*n
+def dfs(v):
+    found = False
+    for v2 ,c in edge[v]:
+        if not chk[v2]:
+            chk[v2] = True
+            if v2 == ed:
+                return  True
+            found |= dfs(v2)
+    return found
+
 #print(cycle)
+for v in range(n):
+    chk = [False]*n
+    if cycle[v]:
+        chk[v] = True
+        dfs(v)
 if cycle[ed]:
     print('Gee')
+elif dp[ed]== -1e10:
+    print('gg')                 
 
 else:
-    if dp[ed]== -1e10:
-        print('gg')                 
-
-    else:
-        print(dp[ed])
+    print(dp[ed])
 
 
 
@@ -64,7 +64,7 @@ else:
 10000 10000 10000
 
 
-4 1 3 4 
+4 0 3 4 
 0 1 0 
 0 1 100000 
 1 2 3 
@@ -78,6 +78,7 @@ else:
 2 1 0 
 0 5 5 10
 
+5
 
 5 0 4 6
 0 1 10000
@@ -106,4 +107,10 @@ else:
 2 2 2 2
 
 -1
+
+3 0 2 3
+0 1 5
+0 2 2
+1 2 -10
+0 0 0
 '''
