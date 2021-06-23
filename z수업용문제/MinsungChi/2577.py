@@ -10,3 +10,4 @@ for h in range(len(d)):
     tmp= int(d[h])
     L[tmp]+=1
 print(*L, sep='\n')
+

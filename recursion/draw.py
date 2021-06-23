@@ -36,10 +36,16 @@ def chk(y , x , d):
     ny , nx = y , x
     cnt = 0
     while mp[ny ][nx] =='*':
+        print(ny,  nx)
         cnt += 1
-        ny , nx = ny + Dy[ d ] , x + Dx[ d ]
+        ny , nx = ny + Dy[ d ] , nx + Dx[ d ]
     return cnt
 y , x = 0 , 0
+
+# def movable(y , x , dir):
+#     if H[y][x]
+H = [ [ [False] * 4 for _ in range(n)] for __ in range(n)]
+recent = -1
 while True:
     print(state)
     for i in range(0,bound,2):
@@ -48,31 +54,29 @@ while True:
 
     [print(*el) for el in mp]
     mv = input()
-    ny , nx = y + Dy[ dir[mv] ] , x + Dx[ dir[mv]]
-    nxt = chk(ny , nx , dir[mv])
-    print(nxt)
+    mv = dir[mv]
+    ny , nx = y + Dy[mv] , x + Dx[mv]
+    nxt = chk(ny , nx , mv)
+    print(nxt , y , x ,' ', ny , nx)
     if nxt:
-        if not state[nxt-1] or nxt>=3:
+        if not state[nxt-1] or nxt>3:
             continue
         else:
-            crossdir = (dir[mv]+2)%4
-            crossdir = dir[mv]
-            print(ny , nx)
-            for i in range(nxt+1 , 0 , -1):
-                mp[y + i * Dy[crossdir]][x + i * Dx[crossdir]] = mp[y + (i-1) * Dy[crossdir]][x + (i-1) * Dx[crossdir]] 
-                mp[y + (i-1) * Dy[crossdir]][x + (i-1) * Dx[crossdir]]  = ' '
-            
+            recent = nxt
+            sy, sx = ny + nxt * Dy[mv] , nx + nxt * Dx[mv]
+            print('s' , sy , sx)
+            mp[sy][sx] = '*'
             state[nxt-1] = False
-            print(state)
+            #print(state)
     else:
-        mp[y][x] , mp[ny][nx] = ' ', '#'
+        mp[y][x] , mp[ny][nx] = ' ', '#'           
         y , x = ny , nx
 
     for i in range(1,1+3):
-        if i != nxt and not state[i-1]:
+        if i != recent and not state[i-1]:
             state[i-1] = True
             break
-    print(y , x , ny , nx)
+    #print(y , x , ny , nx)
     mp[y][x] , mp[ny][nx] = ' ', '#'
     y , x = ny , nx
     print(mp[y][x])

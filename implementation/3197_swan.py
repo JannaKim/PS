@@ -94,20 +94,20 @@ def melt(q):
     while True:
         newq = deque()
         #sleep(1)
-        print(day)
-        print()
-        for row in range(r):
-            for col in range(c):
-                if chk[row][col]== 6:
-                    print('+',end=' ')
-                elif chk[row][col] == 7:
-                    print('*',end=' ')
-                elif chk[row][col]:
-                    print('.',end=' ')
-                else:
-                    print('X',end=' ')
-            print()
-        #print(*chk , sep = '\n' , end = '\n'*2)
+        # print(day)
+        # print()
+        # for row in range(r):
+        #     for col in range(c):
+        #         if chk[row][col]== 6:
+        #             print('+',end=' ')
+        #         elif chk[row][col] == 7:
+        #             print('*',end=' ')
+        #         elif chk[row][col]:
+        #             print('.',end=' ')
+        #         else:
+        #             print('X',end=' ')
+        #     print()
+        # #print(*chk , sep = '\n' , end = '\n'*2)
         
         newq , found = bfs(newq , q, 0)
         if found:
@@ -129,13 +129,13 @@ print(melt(q))
 for row in range(r):
     for col in range(c):
         if chk[row][col]== 6:
-            print('+',end=' ')
+            print('.',end='')
         elif chk[row][col] == 7:
-            print('*',end=' ')
+            print('*',end='')
         elif chk[row][col]:
-            print('.',end=' ')
+            print(' ',end='')
         else:
-            print('X',end=' ')
+            print('█',end='')
     print()
 #print(*chk , sep = '\n')
 

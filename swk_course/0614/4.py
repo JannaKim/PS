@@ -17,6 +17,7 @@ for i in range(1,m):
     tmp = gcd(time[i] , lcm)
     lcm = (time[i]//tmp) * lcm
 
+
 q = []
 for i in range(m):
     heappush(q , (0 , time[i] , i + 1))

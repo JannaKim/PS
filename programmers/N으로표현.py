@@ -1,3 +1,4 @@
+'''
 from itertools import combinations as combi
 def solution(N, number):
     dp= {}
@@ -47,3 +48,34 @@ def solution(N, number):
 
 
 print(solution(5,12),4)
+'''
+
+# dp[i] = j
+
+
+
+'''
+쓰는 숫자 개수로 나눔
+
+숫자를 네개 썼을 때 만다는 숫자 셋
+
+숫자 k개를 썼을 때 만들 수 있는 숫자 세트를
+
+k개 숫자 만들 수 잇는
+
+
+5
+
+1 4 / 2 3 
+한 스테이시 내에서 만들 수 있는 가짓수개 되게 많다
+
+3 3 3 3
+
+1 + 1 - 1
+1 - 1 + 1 만드는 방법이 다르다
+
+배열로 하면 한 step에 똑같은 숫자가 두번 들어간다는 것
+set
+
+
+'''
