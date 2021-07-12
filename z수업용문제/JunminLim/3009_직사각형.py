@@ -6,7 +6,7 @@ for i in range (3):
 Q=[]
 R=[]
 Ans=[]
-print(P)
+
 for i in range (3):
     Q.append(P[i-1][0])
     R.append(P[i-1][1])
