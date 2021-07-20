@@ -1,0 +1,12 @@
+a= input()
+L=[]
+x, y, w, h = a.split(' ')
+d= int(w)-int(x)
+f= int(h)-int(y)
+g= int(x)
+k= int(y)
+L.append(d)
+L.append(f)
+L.append(g)
+L.append(k)
+print(min(L))
