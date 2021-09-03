@@ -32,7 +32,6 @@ def solution(word):
                 contribute(k)
                 res = combine(i, j, k)
                 
-                
                 if res == word:
                     return cnt
                 if not k: continue
@@ -53,4 +52,4 @@ def solution(word):
                             return cnt
                         
                         
-    return answer
+    return -1

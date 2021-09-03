@@ -52,6 +52,7 @@ void bfs(int y, int x, vector<vector <bool>>& field, vector<vector <bool>>& vis)
     while(!q.empty()){
         int cy = q.front().first;
         int cx = q.front().second;
+       
         q.pop();
 
         for(int i = 0; i < 4; ++i){
