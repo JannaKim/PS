@@ -11,9 +11,9 @@ void bfs(int y, int x, vector<vector <bool>>& field, vector<vector <bool>>& vis)
 bool bound(int y, int x);
 
 int tc, ans;
-int row, col, cabbages; // global?
+int row, col, cabbages;
 int dy[] = {0, 0, 1, -1};
-int dx[] = {1, -1, 0, 0}; // !
+int dx[] = {1, -1, 0, 0};
 
 int main(){
     cin >> tc;
